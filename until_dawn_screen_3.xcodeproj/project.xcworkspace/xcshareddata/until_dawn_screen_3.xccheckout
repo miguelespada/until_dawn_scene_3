@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0F1E7896-935B-4B3E-8BB7-9F93AB146D60</string>
+	<key>IDESourceControlProjectName</key>
+	<string>until_dawn_screen_3</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BFF716509F6D6A0E8456CDD7ED274E1A47F085BA</key>
+		<string>https://github.com/miguelespada/until_dawn_scene_3.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>until_dawn_screen_3.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BFF716509F6D6A0E8456CDD7ED274E1A47F085BA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/miguelespada/until_dawn_scene_3.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BFF716509F6D6A0E8456CDD7ED274E1A47F085BA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BFF716509F6D6A0E8456CDD7ED274E1A47F085BA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>until_dawn_screen_3</string>
+		</dict>
+	</array>
+</dict>
+</plist>
