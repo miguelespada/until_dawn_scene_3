@@ -29,6 +29,14 @@ void Assets::load(){
     wireframe.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
     
+    filename = "eye.png";
+    eye.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+    
+    filename = "parametros.png";
+    parametros.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+    
     
     for(int i = 0; i < 5; i ++){
         string filename = "glitch_" + ofToString(i) + ".mov";

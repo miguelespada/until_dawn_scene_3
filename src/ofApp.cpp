@@ -6,15 +6,31 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    //    ofToggleFullscreen();
+    ofSetWindowPosition(1921, 0);
     ofSetFrameRate(12);
     
     assets = Assets::getInstance();
     
-    bRotated = true;
+    bRotated = false;
     setRotation();
     
-    app.setCurrentState(new Thermal(&app));
+    
+    ofVideoGrabber 		vidGrabber;
+    vector<ofVideoDevice> devices = vidGrabber.listDevices();
+    
+    for(int i = 0; i < devices.size(); i++){
+        cout << devices[i].id << ": " << devices[i].deviceName;
+        if( devices[i].bAvailable ){
+            cout << endl;
+        }else{
+            cout << " - unavailable " << endl;
+        }
+    }
+    
+    app.setCurrentState(new Flow(&app));
+    
+    
+    ofToggleFullscreen();
 
 }
 

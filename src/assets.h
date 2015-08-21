@@ -11,7 +11,7 @@
 
 #include "ofMain.h"
 
-#define SCALE 2
+#define SCALE 1
 #define WW 1920/SCALE
 #define HH 1080/SCALE
 
@@ -22,9 +22,7 @@ public:
     void load();
     
     float getScale();
-    
-    ofImage wireframe_heart;
-    
+
     
     ofVideoPlayer glitches[5];
     
@@ -36,6 +34,8 @@ public:
     
     
     ofImage wireframe;
+    ofImage eye;
+    ofImage parametros;
     
     ofTrueTypeFont		*fonts[64];
     ofTrueTypeFont *getFont(float size);

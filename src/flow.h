@@ -22,6 +22,7 @@
 
 using namespace flowTools;
 
+#define FLOW_SIZE 150
 
 class Flow: public State
 {
@@ -65,7 +66,9 @@ class Flow: public State
     ftVelocityField		velocityField;
     ftTemperatureField	temperatureField;
     
-    
+    vector<float> flow;
+    vector<float> flow_x;
+    vector<float> flow_y;
   
     
 public:
@@ -80,7 +83,8 @@ public:
     void updateFluids();
     void drawFluids();
     void drawContours();
-    
+    void drawOpticalValue();
+    void computeFlow();
     
     
 };

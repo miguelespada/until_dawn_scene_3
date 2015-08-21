@@ -13,8 +13,6 @@
 #include "State.h"
 #include "ofxOsc.h"
 
-#define HOST "localhost"
-#define PORT 12345
 
 class App
 {

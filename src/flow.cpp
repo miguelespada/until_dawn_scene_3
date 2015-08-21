@@ -12,6 +12,7 @@
 #include "App.h"
 #include "Assets.h"
 #include "thermalGlitch.h"
+#include "ofxJSON.h"
 
 
 Flow::Flow(App *a){
@@ -30,6 +31,12 @@ Flow::Flow(App *a){
     
     lastTime = ofGetElapsedTimef();
     
+    
+    for(int i = 0; i < FLOW_SIZE; i ++){
+        flow.push_back(0);
+        flow_x.push_back(0);
+        flow_y.push_back(0);
+    }
 };
 
 void Flow::draw(){
@@ -58,15 +65,15 @@ void Flow::draw(){
     ofTrueTypeFont *font = assets->getFont(11);
     
     msg = "INFRARED CAMERA";
-    font->drawString(msg, 84 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 84 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 1.5);
     
     msg = ofToString(ofGetFrameRate());
     
     msg = "CONTOURS";
-    font->drawString(msg, 84 * assets->getScale(), 758 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 84 * assets->getScale(), 758 * assets->getScale() + font->getLineHeight() / 1.5);
     
     msg = "OPTICAL FLOW";
-    font->drawString(msg, 84 * assets->getScale(), 1344 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 84 * assets->getScale(), 1344 * assets->getScale() + font->getLineHeight() / 1.5);
     
     int n = ofGetFrameNum() / 10;
     if(n % 3 == 0)
@@ -76,8 +83,9 @@ void Flow::draw(){
     if(n % 3 == 2)
         msg = "PROCESANDO...";
     
-    font->drawString(msg, 855 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 855 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 1.5);
     
+    drawOpticalValue();
 };
 
 void Flow::update(){
@@ -99,6 +107,7 @@ void Flow::update(){
         
         contourFinder.findContours(thresh);
         updateFluids();
+        computeFlow();
     }
     
     
@@ -180,4 +189,114 @@ void Flow::drawContours(){
     ofScale(910 * assets->getScale() / thresh.getWidth(), 450 * assets->getScale() / thresh.getHeight(), 1);
     contourFinder.draw();
     ofPopMatrix();
+    
+    
+    ofPushMatrix();
+    
+    ofTranslate(965  * assets->getScale(), 853  * assets->getScale());
+    string msg;
+    msg = ofToString( contourFinder.size() );
+    
+    ofTrueTypeFont *font = assets->getFont(30);
+    font->drawString(msg,  - font->stringWidth(msg), 0);
+    
+    ofTranslate(0, - font->getLineHeight() * 0.9);
+    font = assets->getFont(12);
+    msg = "CONTOUR SIZE";
+    font->drawString(msg, - font->stringWidth(msg), 0);
+    
+    ofPopMatrix();
+
+    
+}
+
+void Flow::drawOpticalValue(){
+  
+    
+    ofPushMatrix();
+    
+    ofTranslate(965  * assets->getScale(), 273  * assets->getScale());
+    string msg;
+    msg = ofToString(int(flow[flow.size() - 1] * 10000) / 100.);
+    
+    ofTrueTypeFont *font = assets->getFont(30);
+    font->drawString(msg,  - font->stringWidth(msg), 0);
+    
+    ofTranslate(0, - font->getLineHeight() * 0.9);
+    font = assets->getFont(12);
+    msg = "OPTICAL VALUE";
+    font->drawString(msg, - font->stringWidth(msg), 0);
+    
+    ofPopMatrix();
+
+    
+    int s = 150;
+    ofPushMatrix();
+    ofTranslate(890 * assets->getScale(), 550 * assets->getScale()) ;
+    ofSetColor(255);
+    ofSetLineWidth(1);
+    
+    ofNoFill();
+    ofRect(-s/2 * assets->getScale(), - s/2 * assets->getScale(), s * assets->getScale(), s * assets->getScale());
+    for(int i = 0; i < FLOW_SIZE; i += 10)
+        ofLine(0, 0, flow_x[i] * s * assets->getScale(), flow_y[i] * s * assets->getScale());
+    
+    ofPopStyle();
+    ofPopMatrix();
+    
+    
+    ofPushMatrix();
+    ofTranslate(120 * assets->getScale(), 550 * assets->getScale() + s / 2 * assets->getScale()) ;
+    ofSetColor(255);
+    ofSetLineWidth(1);
+    
+    
+    ofScale(2 * assets->getScale(), 1);
+    for(int i = 1; i < FLOW_SIZE; i ++)
+        ofLine(i - 1, - flow[i - 1] * s * assets->getScale(), i, - flow[i] * s * assets->getScale());
+    
+    ofPopStyle();
+    ofPopMatrix();
+    
+    int w =  assets->parametros.getWidth() * assets->getScale();
+    int h =  assets->parametros.getHeight() * assets->getScale();
+
+    
+    assets->parametros.draw(426 * assets->getScale(), 1735 * assets->getScale(), w, h);
+}
+
+
+void Flow::computeFlow(){
+    
+    ofVec2f *flowVectors = opticalFlow.getFlowVectors();
+    
+    float avgFlow_x = 0;
+    float avgFlow_y = 0;
+    float avgFlow = 0;
+    for (int i=0; i < flowWidth * flowHeight; i++) {
+        avgFlow_x += flowVectors[i].x;
+        avgFlow_y += flowVectors[i].y;
+        avgFlow += flowVectors[i].length();
+    }
+    avgFlow_x /= flowWidth * flowHeight;
+    avgFlow_y /= flowWidth * flowHeight;
+    avgFlow /= flowWidth * flowHeight;
+    
+    
+    
+    flow.push_back(avgFlow);
+    flow_x.push_back(avgFlow_x);
+    flow_y.push_back(avgFlow_y);
+    
+    
+    if(flow.size() > FLOW_SIZE){
+        flow.erase(flow.begin()+ 0);
+        flow_x.erase(flow_x.begin()+ 0);
+        flow_y.erase(flow_y.begin()+ 0);
+    }
+    
+    ofxJSONElement response;
+    response.open("http://localhost:3000/flow.json?v=" + ofToString(avgFlow));
+
+    
 }

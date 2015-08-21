@@ -24,7 +24,7 @@ Thermal::Thermal(App *a){
     camWidth 		= 640;
     camHeight 		= 480;
     
-    vidGrabber.setDeviceID(0);
+    vidGrabber.setDeviceID(1);
     vidGrabber.initGrabber(camWidth, camHeight);
 
     delta_y = 0;
@@ -72,12 +72,12 @@ void Thermal::draw(){
     ofTrueTypeFont *font = assets->getFont(11);
     
     msg = "MIGUEL V. ESPADA";
-    font->drawString(msg, 84 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 84 * assets->getScale(), 177 * assets->getScale() + font->getLineHeight() / 1.5);
     
     msg = ofToString(ofGetFrameRate());
     
     msg = "TERMAL BALANCE";
-    font->drawString(msg, 84 * assets->getScale(), 758 * assets->getScale() + font->getLineHeight() / 2);
+    font->drawString(msg, 84 * assets->getScale(), 758 * assets->getScale() + font->getLineHeight() / 1.5);
     
     drawElapsedTime(818  * assets->getScale(), 273  * assets->getScale());
     
