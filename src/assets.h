@@ -11,17 +11,15 @@
 
 #include "ofMain.h"
 
-#define SCALE 1
+#define SCALE 2
 #define WW 1920/SCALE
 #define HH 1080/SCALE
-
+#define FLOW_SIZE 150
 
 class Assets{
 public:
     static Assets* getInstance();
     void load();
-    
-    float getScale();
 
     
     ofVideoPlayer glitches[5];
@@ -38,10 +36,7 @@ public:
     ofImage parametros;
     
     ofTrueTypeFont		*fonts[64];
-    ofTrueTypeFont *getFont(float size);
-    
-    int getWidth();
-    int getHeight();
+    ofTrueTypeFont *getFont(int size);
     
     
 private:

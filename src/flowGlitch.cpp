@@ -23,11 +23,8 @@ flowGlitch::flowGlitch(App *a){
 
 void flowGlitch::draw(){
     
-    int w = Assets::getInstance()->getWidth();
-    int h = Assets::getInstance()->getHeight();
-    
    if(video.isLoaded())
-        video.draw(0, 0, w, h);
+        video.draw(0, 0);
 };
 
 void flowGlitch::update(){

@@ -17,18 +17,12 @@ Standby::Standby(App *a){
 };
 
 void Standby::draw(){
-    int w = Assets::getInstance()->getWidth();
-    int h = Assets::getInstance()->getHeight();
-    
     ofTrueTypeFont *font = Assets::getInstance()->getFont(30);
     
     string msg = "STAND BY";
     
-    int text_x = w / 2 - font->stringWidth(msg) / 2;
-    font->drawString(msg, text_x, h/4 + font->stringHeight(msg) * 1.5);
-    
-    
-    
+    int text_x = 1080/2 - font->stringWidth(msg) / 2;
+    font->drawString(msg, text_x, 400 + font->stringHeight(msg) * 1.5);
 };
 
 void Standby::update(){

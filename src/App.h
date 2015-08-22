@@ -12,7 +12,8 @@
 #include "ofMain.h"
 #include "State.h"
 #include "ofxOsc.h"
-
+#include "flowEngine.h"
+#include "thermalEngine.h"
 
 class App
 {
@@ -32,6 +33,10 @@ public:
     void jump();
     void draw();
     void cancel();
+    void processOsc();
+    
+    FlowEngine *flowEngine;
+    ThermalEngine *thermalEngine;
 };
 
 

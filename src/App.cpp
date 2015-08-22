@@ -1,5 +1,6 @@
 #include "App.h"
 #include "ofxJSON.h"
+#include "assets.h"
 
 
 App::App(){
@@ -9,7 +10,18 @@ App::App(){
     
     receiver = new ofxOscReceiver;
     receiver->setup(12345);
+    
+    
+    ofLogNotice() << "App... ";
+    
+    flowEngine = new FlowEngine();
+    thermalEngine = new ThermalEngine();
+    
+    flowEngine->setupCamera();
+    thermalEngine->setupCamera();
 }
+
+
 
 void App::setCurrentState(State *s){
     current_state = s;
@@ -36,8 +48,29 @@ void App::draw(){
 }
 
 void App::update(){
-    current_state->update();
-    current_state->processOsc();
+    
+    try
+    {
+        current_state->update();
+        flowEngine->updateFlow();
+        thermalEngine->updateThermal();
+    }
+    
+    catch (int e)
+    {
+        ofLogError() << "An exception occurred. Exception Nr. " << e;
+    }
+    
+    
+    while(receiver->hasWaitingMessages()){
+        ofxOscMessage m;
+        receiver->getNextMessage(&m);
+        
+        if(m.getAddress() == "/delta"){
+            thermalEngine->delta_y = m.getArgAsInt32(0);
+        }
+    }
+
 }
 
 void App::update(ofEventArgs &args){
@@ -45,7 +78,6 @@ void App::update(ofEventArgs &args){
 }
 
 void App::keyPressed (ofKeyEventArgs& eventArgs){
-    ofxJSONElement response;
     switch (eventArgs.key) {
         case 'n':
             next();
@@ -54,3 +86,4 @@ void App::keyPressed (ofKeyEventArgs& eventArgs){
             break;
     }
 }
+

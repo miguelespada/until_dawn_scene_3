@@ -23,11 +23,8 @@ thermalGlitch::thermalGlitch(App *a){
 
 void thermalGlitch::draw(){
     
-    int w = Assets::getInstance()->getWidth();
-    int h = Assets::getInstance()->getHeight();
-    
     if(video.isLoaded())
-        video.draw(0, 0, w, h);
+        video.draw(0, 0);
 };
 
 void thermalGlitch::update(){

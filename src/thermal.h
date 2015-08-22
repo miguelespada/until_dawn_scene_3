@@ -11,25 +11,13 @@
 
 #include <State.h>
 #include "assets.h"
+#include "thermalEngine.h"
 
-#define BUFFER_SIZE 20
 
 class Thermal: public State
 {
     
     Assets *assets;
-    
-    ofVideoGrabber 		vidGrabber;
-    unsigned char * 	videoInverted;
-    ofTexture			videoTexture;
-    int 				camWidth;
-    int 				camHeight;
-    
-    ofImage img;
-    vector<ofImage> images;
-    
-    int delta_y;
-    bool bSave;
     
 public:
     Thermal(App *g);
@@ -38,11 +26,19 @@ public:
     void update();
     void draw();
     void next();
-    void processOsc();
     
-    void drawElapsedTime(int x, int y);
+    void drawTexts();
+    void drawElapsedTime();
+    void drawThermalData();
+    void drawSamples();
+    void drawThermalVariation();
+    void drawHue();
     float initial_time;
+    
+    
+    ThermalEngine *thermalEngine;
 };
 
 
 #endif /* defined(__until_dawn_screen_3__termal__) */
+

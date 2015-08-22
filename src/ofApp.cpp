@@ -6,32 +6,18 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    ofSetWindowPosition(1921, 0);
-    ofSetFrameRate(12);
+    ofSetFrameRate(8);
     
     assets = Assets::getInstance();
     
-    bRotated = false;
+    bRotated = true;
     setRotation();
     
-    
-    ofVideoGrabber 		vidGrabber;
-    vector<ofVideoDevice> devices = vidGrabber.listDevices();
-    
-    for(int i = 0; i < devices.size(); i++){
-        cout << devices[i].id << ": " << devices[i].deviceName;
-        if( devices[i].bAvailable ){
-            cout << endl;
-        }else{
-            cout << " - unavailable " << endl;
-        }
-    }
-    
-    app.setCurrentState(new Flow(&app));
-    
-    
-    ofToggleFullscreen();
 
+    
+    app.setCurrentState(new Thermal(&app));
+    
+//    setFullScreen();
 }
 
 //--------------------------------------------------------------
@@ -51,10 +37,15 @@ void ofApp::draw(){
         ofRotate(-90);
     }
     
+    if(ofGetWindowWidth() < ofGetWindowHeight())
+        ofScale(ofGetWidth() / 1080., ofGetHeight() / 1920. );
+    else
+        ofScale(ofGetWidth() / 1920., ofGetHeight() / 1080. );
+    
     app.draw();
     ofPopMatrix();
 
-//   ofSaveScreen("image_" + ofToString(ofGetFrameNum()) + ".jpg");
+    //ofSaveScreen("image_" + ofToString(ofGetFrameNum()) + ".jpg");
 
 }
 
@@ -78,11 +69,18 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
 
 }
-
 void ofApp::setRotation(){
     
     if(bRotated)
-        ofSetWindowShape(1080 * assets->getScale(), 1920 * assets->getScale());
+        ofSetWindowShape(HH, WW);
     else
-        ofSetWindowShape(1920 * assets->getScale(), 1080 * assets->getScale());
+        ofSetWindowShape(WW, HH);
+}
+
+void ofApp::setFullScreen(){
+    ofSetWindowPosition(1921, 0);
+    ofToggleFullscreen();
+    bRotated = false;
+    setRotation();
+
 }

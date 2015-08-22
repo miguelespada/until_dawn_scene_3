@@ -17,6 +17,7 @@ class ofApp : public ofBaseApp{
     
         bool bRotated = true;
         void setRotation();
+        void setFullScreen();
     
         App app;
 };

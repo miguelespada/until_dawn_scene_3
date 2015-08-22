@@ -28,8 +28,6 @@ public:
     virtual void push() {};
     virtual void end() {};
     virtual void init() {};
-    
-    virtual void processOsc(){};
 };
 
 
