@@ -14,12 +14,15 @@
 #include "ofxOsc.h"
 #include "flowEngine.h"
 #include "thermalEngine.h"
+#include "ofxBlackMagic.h"
+#include "ofxJSON.h"
 
 class App
 {
     
 public:
     App();
+    ~App();
     class State *current_state;
     
     ofxOscReceiver *receiver;
@@ -27,6 +30,8 @@ public:
     void setCurrentState(State *s);
     void keyPressed(ofKeyEventArgs& eventArgs);
     void update(ofEventArgs &args);
+    
+    void updateBlackMagic();
     
     void update();
     void next();
@@ -37,6 +42,12 @@ public:
     
     FlowEngine *flowEngine;
     ThermalEngine *thermalEngine;
+    
+    ofxBlackMagic cam;
+    ofImage blackMagicImage;
+    
+    
+    ofxJSONElement data;
 };
 
 

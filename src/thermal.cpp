@@ -29,32 +29,28 @@ Thermal::Thermal(App *a){
 };
 
 void Thermal::draw(){
-    
     if(thermalEngine->hasImages()){
         
-        thermalEngine->prev(20).draw(84, 200, 910,  450);
-        thermalEngine->prev(10).draw(84, 784, 910,  450);
+        thermalEngine->prev(19).draw(84, 200, 910,  450);
+        thermalEngine->prev(9).draw(84, 784, 910,  450);
         thermalEngine->lastImage().draw(84, 1366, 910,  450);
     }
     
-    if(thermalEngine->images.size() > 0)
-        thermalEngine->images[thermalEngine->images.size() - 1].draw(84, 1366, 910,  450);
-    
-    
-
-    
-
+    drawElapsedTime();
     drawTexts();
     drawThermalData();
-    drawElapsedTime();
+    drawTemperature();
+    drawTarget();
     
     
-    assets->wireframe.draw(0, 0);
+    assets->wireframe_thermal.draw(0, 0);
+    
 };
 
 
 
 void Thermal::update(){
+    
 }
 
 
@@ -105,101 +101,84 @@ void Thermal::drawTexts(){
     font->drawStringAsShapes(msg, 84, 758 + font->getLineHeight() / 1.5);
 }
 
-void Thermal::drawSamples(){
-    
-    ofTrueTypeFont *font  = assets->getFont(12);
-    string msg = "HUE AVG";
-    font->drawStringAsShapes(msg, 815, 1730);
-    
-    
+void Thermal::drawTarget(){
     ofPushMatrix();
     ofPushStyle();
+    ofTranslate(84, 1366);
     
-    ofTranslate(815, 1600);
+    ofLine(910. * thermalEngine->target_x, 0, 910. * thermalEngine->target_x,  450);
+    ofLine(0, 450. * thermalEngine->target_y, 910., 450. * thermalEngine->target_y);
     
-    ofSetLineWidth(0.5);
-    for(int i = 0; i < 9; i ++){
-        ofLine(0, i * 10 , 160, i * 10);
-        ofLine(i * 20, 0, i * 20, 80);
-    }
-    
-    ofSetLineWidth(1);
-    
-    ofScale(0.25, 0.25);
-    
-    for(int i = 0; i < 100; i ++){
-        int x = thermalEngine->samples[i].x;
-        int y = thermalEngine->samples[i].y;
-        ofNoFill();
-        ofEllipse(x, y, 10 , 10 );
-        
-    }
-    
+    ofNoFill();
+    ofTranslate(910. * thermalEngine->target_x, 450. * thermalEngine->target_y);
+    ofRect(-20, -20, 40, 40);
     ofPopStyle();
     ofPopMatrix();
     
+    
+    
+    ofTrueTypeFont *font  = assets->getFont(16);
+    string  msg = "(" + ofToString(ofToString(int(thermalEngine->target_x * 100) / 100.) + "," + ofToString(int(thermalEngine->target_y * 100) / 100.)) + ")";
+    font->drawStringAsShapes(msg, 964 - font->stringWidth(msg),  1388 + font->getLineHeight() / 1.5);
+
 }
 
-void Thermal::drawHue(){
-    
-    ofPushMatrix();
-    
-    ofTranslate(825, 1950);
-    
-    ofScale(1.4, 1);
-    for(int i = 1; i < thermalEngine->hues.size(); i ++){
-        float h0 = thermalEngine->hues[i - 1];
-        float h1 = thermalEngine->hues[i];
-        if(h0 != 0 && h1 != 0)
-            ofLine(i - 1, - h0, i, - h1);
-    }
-    
-    ofPopMatrix();
-    
-    
-}
+
 void Thermal::drawThermalVariation(){
     
-    ofTrueTypeFont *font  = assets->getFont(12);
-    string msg = "HUE VARIANCE";
-    font->drawStringAsShapes(msg, 257, 1178 + font->getLineHeight() / 1.5);
-    
-    
     ofPushMatrix();
-    ofTranslate(257, 1165);
+    ofTranslate(800, 900);
     
-    ofScale(4, 2);
+    ofScale(1.5, 2);
     
+    float var = 0;
     
     for(int i = 1; i < thermalEngine->dist.size(); i ++){
         float d0 = thermalEngine->dist[i-1];
         float d1 = thermalEngine->dist[i];
-        
         ofLine(i - 1, - d0, i, - d1 );
     }
     
     ofPopMatrix();
+    
+    ofTrueTypeFont *font  = assets->getFont(16);
+    string msg = "HUE VARIANCE";
+    font->drawStringAsShapes(msg, 964 - font->stringWidth(msg), 843 + font->getLineHeight() / 1.5);
    
     
-    float d = thermalEngine->dist[thermalEngine->dist.size() - 1];
-    msg = ofToString(d);
+    font = assets->getFont(24);
     
-    font->drawStringAsShapes(msg, 257, 1198 + font->getLineHeight() / 1.5);
+    msg = ofToString(int(thermalEngine->avg));
     
+    font->drawStringAsShapes(msg, 964 - font->stringWidth(msg),  804 + font->getLineHeight() / 1.5);
+
 }
 
 void Thermal::drawThermalData(){
-    drawSamples();
-    drawHue();
-    
     drawThermalVariation();
+}
 
+void Thermal::drawTemperature(){
+    
+    ofxJSONElement temps = app->data["temp"];
+    temperature = temps[temps.size() - 1].asFloat() / 100.;
+    
+    float y = ofMap(temperature, 26., 42., 1022, 806);
+    
+    ofLine(105, y, 110, y);
     
     
-
+    ofLine(783, 1107, 783, 1197);
+    ofLine(783, 1197, 962, 1197);
     
-
-    
-    
-    
+    ofPushMatrix();
+    ofTranslate(786, 1197);
+    ofScale(0.9, 1);
+    for(int i = 0; i < temps.size() / 5; i += 1){
+        float t =  temps[i].asFloat() / 100;
+        
+        float y = ofMap(t, 30., 40., 0, 90);
+        ofLine(i*5, 0, i*5, - y);
+    }
+    ofPopMatrix();
 }

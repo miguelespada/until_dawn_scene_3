@@ -79,6 +79,7 @@ void FlowEngine::computeFlow(){
     avgFlow /= flowWidth * flowHeight;
     
     
+    avgFlow = ofClamp(avgFlow, 0, 100);
     
     flow.push_back(avgFlow);
     flow_x.push_back(avgFlow_x);
@@ -98,7 +99,7 @@ void FlowEngine::computeFlow(){
 void FlowEngine::saveFlow(float avgFlow){
     
     ofxJSONElement response;
-    response.open("http://localhost:3000/flow.json?v=" + ofToString(avgFlow));
+    response.open("http://192.168.1.42:3000/flow.json?v=" + ofToString(avgFlow));
     
 }
 

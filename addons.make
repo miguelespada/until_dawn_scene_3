@@ -4,3 +4,4 @@ ofxCv
 ofxFlowTools
 ofxOpenCv
 ofxGui
+ofxBlackmagic

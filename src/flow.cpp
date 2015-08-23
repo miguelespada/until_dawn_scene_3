@@ -48,7 +48,7 @@ void Flow::draw(){
         ofLogError() << "An exception occurred. Exception Nr. " << e;
     }
     
-    assets->wireframe.draw(0, 0);
+    assets->wireframe_flow.draw(0, 0);
     
     
     string msg;
@@ -173,8 +173,6 @@ void Flow::drawOpticalValue(){
     ofPopStyle();
     ofPopMatrix();
 
-    
-    assets->parametros.draw(426, 1735);
 }
 
 

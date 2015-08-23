@@ -6,7 +6,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    ofSetFrameRate(8);
+    ofSetFrameRate(10);
     
     assets = Assets::getInstance();
     
@@ -45,7 +45,10 @@ void ofApp::draw(){
     app.draw();
     ofPopMatrix();
 
-    //ofSaveScreen("image_" + ofToString(ofGetFrameNum()) + ".jpg");
+//    ofSaveScreen("image_" + ofToString(ofGetFrameNum()) + ".jpg");
+    
+    if(ofGetFrameNum() % 30 == 0)
+        ofLogNotice() << ofGetFrameRate();
 
 }
 

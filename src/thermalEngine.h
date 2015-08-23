@@ -10,36 +10,38 @@
 #define __until_dawn_screen_3__termalEngine__
 
 #include "ofMain.h"
+
 #define BUFFER_SIZE 20
 
 class ThermalEngine
 {
     
+    
 public:
-    //    ofVideoGrabber 		vidGrabber;
     ofVideoPlayer vidGrabber;
     
     int camWidth;
     int camHeight;
     int delta_y;
+    float target_x;
+    float target_y;
 
+    float avg;
     
     ofImage img;
     ofImage img_1;
     ofImage img_2;
     vector<ofImage> images;
-    vector<ofPoint> samples;
-    vector<float> hues;
-    vector<float> saturation;
-    vector<float> bright;
+    
     vector<float> dist;
     
     
     void calculateVariation();
-    void sample();
+    
+    void calculateAvg();
     
     void setupCamera();
-    void updateThermal();
+    void updateThermal(ofImage blackMagicImg);
     
     void saveThermal(float absDist);
     

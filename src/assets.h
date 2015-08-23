@@ -16,6 +16,8 @@
 #define HH 1080/SCALE
 #define FLOW_SIZE 150
 
+#define BLACKMAGIC false
+
 class Assets{
 public:
     static Assets* getInstance();
@@ -31,7 +33,8 @@ public:
     ofColor orange = ofColor(243, 144, 69);
     
     
-    ofImage wireframe;
+    ofImage wireframe_flow;
+    ofImage wireframe_thermal;
     ofImage eye;
     ofImage parametros;
     

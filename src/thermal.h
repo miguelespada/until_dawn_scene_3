@@ -30,11 +30,13 @@ public:
     void drawTexts();
     void drawElapsedTime();
     void drawThermalData();
-    void drawSamples();
+    void drawTarget();
+    
     void drawThermalVariation();
-    void drawHue();
+    void drawTemperature();
     float initial_time;
     
+    float temperature;
     
     ThermalEngine *thermalEngine;
 };

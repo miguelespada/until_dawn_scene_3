@@ -4,7 +4,6 @@
 
 
 App::App(){
-    // Register events and actions
     ofAddListener(ofEvents().keyPressed, this, &App::keyPressed);
     ofAddListener(ofEvents().update, this, &App::update);
     
@@ -19,8 +18,17 @@ App::App(){
     
     flowEngine->setupCamera();
     thermalEngine->setupCamera();
+    
+    
+    if(BLACKMAGIC)
+        cam.setup(1920, 1080, 30);
 }
 
+App::~App(){
+    cam.close();
+    delete flowEngine;
+    delete thermalEngine;
+}
 
 
 void App::setCurrentState(State *s){
@@ -48,12 +56,18 @@ void App::draw(){
 }
 
 void App::update(){
-    
+    if(BLACKMAGIC){
+        
+        if(current_state->toString() == "Thermal")
+            updateBlackMagic();
+    }
     try
     {
         current_state->update();
+    
         flowEngine->updateFlow();
-        thermalEngine->updateThermal();
+        if(current_state->toString() == "Thermal")
+            thermalEngine->updateThermal(blackMagicImage);
     }
     
     catch (int e)
@@ -65,9 +79,10 @@ void App::update(){
     while(receiver->hasWaitingMessages()){
         ofxOscMessage m;
         receiver->getNextMessage(&m);
-        
-        if(m.getAddress() == "/delta"){
+        if(m.getAddress() == "/thermal"){
             thermalEngine->delta_y = m.getArgAsInt32(0);
+            thermalEngine->target_x = m.getArgAsFloat(1);
+            thermalEngine->target_y = m.getArgAsFloat(2);
         }
     }
 
@@ -75,6 +90,11 @@ void App::update(){
 
 void App::update(ofEventArgs &args){
     update();
+    
+    
+    if(ofGetFrameNum() % 15 == 0){
+        data.open("http://localhost:3000/last.json");
+    }
 }
 
 void App::keyPressed (ofKeyEventArgs& eventArgs){
@@ -85,5 +105,12 @@ void App::keyPressed (ofKeyEventArgs& eventArgs){
         default:
             break;
     }
+}
+
+void App::updateBlackMagic(){
+    if(cam.update()){
+        blackMagicImage.setFromPixels(cam.getColorPixels());
+    }
+    
 }
 

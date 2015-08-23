@@ -25,8 +25,12 @@ Assets* Assets::getInstance(){
 void Assets::load(){
     
     
-    string filename = "wireframe.png";
-    wireframe.loadImage(filename);
+    string filename = "wireframe_thermal.png";
+    wireframe_thermal.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+    
+    filename = "wireframe_flow.png";
+    wireframe_flow.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
     
     filename = "eye.png";
