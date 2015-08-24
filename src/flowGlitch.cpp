@@ -36,7 +36,6 @@ void flowGlitch::update(){
 }
 
 void flowGlitch::next(){
-    video.stop();
     app->setCurrentState(new Flow(app));
     delete this;
     

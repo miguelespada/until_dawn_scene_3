@@ -17,7 +17,9 @@ class thermalGlitch: public State
     
 public:
     thermalGlitch(App *g);
-    ~thermalGlitch(){};
+    ~thermalGlitch(){
+        video.stop();
+    };
     std::string toString() { return "thermalGlitch"; }
     void update();
     void draw();

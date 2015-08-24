@@ -16,7 +16,9 @@ class flowGlitch: public State
     
 public:
     flowGlitch(App *g);
-    ~flowGlitch(){};
+    ~flowGlitch(){
+        video.stop();
+    };
     std::string toString() { return "flowGlitch"; }
     void update();
     void draw();

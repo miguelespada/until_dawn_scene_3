@@ -1,6 +1,5 @@
 bin/*.app
 .DS_Store
-Project.xcconfig
 bin/libs
 obj
 bin/data/*.mov
