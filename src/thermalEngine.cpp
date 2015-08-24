@@ -14,7 +14,7 @@ void ThermalEngine::setupCamera(){
     
     
     camWidth 		= 640;
-    camHeight 		= 480;
+    camHeight 		= 316;
     
     
     
@@ -44,15 +44,19 @@ void ThermalEngine::updateThermal(ofImage heatImg){
 
 void ThermalEngine::calculateVariation(){
 
-
-    ofColor c = img.getColor(target_x, target_y);
-    float h = c.getHueAngle();
+    ofColor c = prev(1).getColor(target_x  * camWidth , target_y * camHeight);
+    int h = c.getHueAngle();
     
-    ofColor c1 = prev(1).getColor(target_x, target_y);
-    float h_1 = c1.getHueAngle();
+    ofColor c1 = prev(2).getColor(target_x  * camWidth , target_y * camHeight);
+    int h_1 = c1.getHueAngle();
 
-    float absDist = abs(h_1 - h);
     
+    int absDist = abs(h_1 - h);
+    if(absDist > 300){
+        absDist = 360 - absDist;
+    }
+    
+    absDist = ofClamp(absDist, 0, 40);
     dist.push_back(absDist);
     
     if(dist.size() > 100){
@@ -70,7 +74,6 @@ void ThermalEngine::calculateAvg(){
         avg += dist[dist.size() - i - 1];
     }
     avg /= 10;
-    avg *= 100;
 }
 
 void ThermalEngine::saveThermal(float absDist){
