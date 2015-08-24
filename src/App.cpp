@@ -1,6 +1,7 @@
 #include "App.h"
 #include "ofxJSON.h"
 #include "assets.h"
+#include "standby.h"
 
 
 App::App(){
@@ -8,7 +9,7 @@ App::App(){
     ofAddListener(ofEvents().update, this, &App::update);
     
     receiver = new ofxOscReceiver;
-    receiver->setup(12345);
+    receiver->setup(12343);
     
     
     ofLogNotice() << "App... ";
@@ -22,6 +23,8 @@ App::App(){
     
     if(BLACKMAGIC)
         cam.setup(1920, 1080, 30);
+    
+    bSave = false;
 }
 
 App::~App(){
@@ -57,7 +60,6 @@ void App::draw(){
 
 void App::update(){
     if(BLACKMAGIC){
-        
         if(current_state->toString() == "Thermal")
             updateBlackMagic();
     }
@@ -65,9 +67,12 @@ void App::update(){
     {
         current_state->update();
     
-        flowEngine->updateFlow();
-        if(current_state->toString() == "Thermal")
-            thermalEngine->updateThermal(blackMagicImage);
+        if(current_state->toString() == "Thermal" || current_state->toString() == "Flow"){
+            flowEngine->updateFlow();
+        
+            if(current_state->toString() == "Thermal")
+                thermalEngine->updateThermal(blackMagicImage);
+        }
     }
     
     catch (int e)
@@ -78,14 +83,53 @@ void App::update(){
     
     while(receiver->hasWaitingMessages()){
         ofxOscMessage m;
+        
         receiver->getNextMessage(&m);
+        cout << m.getAddress() << endl;
         if(m.getAddress() == "/thermal"){
-            thermalEngine->delta_y = m.getArgAsInt32(0);
-            thermalEngine->target_x = m.getArgAsFloat(1);
-            thermalEngine->target_y = m.getArgAsFloat(2);
+            thermalEngine->delta_x = m.getArgAsInt32(0);
+            thermalEngine->delta_y = m.getArgAsInt32(1);
+            thermalEngine->target_x = m.getArgAsFloat(2);
+            thermalEngine->target_y = m.getArgAsFloat(3);
         }
+        
+        if(m.getAddress() == "/flow"){
+            flowEngine->delta_y = m.getArgAsInt32(0);
+        }
+        
+        if(m.getAddress() == "/standby"){
+            current_state->standby();
+        }
+        
+        if(m.getAddress() == "/next"){
+            current_state->next();
+        }
+        
+        
+        if(m.getAddress() == "/index"){
+            current_state->index();
+        }
+        
+        if(m.getAddress() == "/calculandoIndex"){
+            current_state->calculandoIndex();
+        }
+        
+        if(m.getAddress() == "/save"){
+            bSave = bool(m.getArgAsInt32(0));
+            save();
+        }
+        
     }
 
+}
+
+void App::save(){
+    ofLogNotice() << "Saving ---> " << bSave;
+    dir = "images/" + data["_id"]["$oid"].asString();
+    if(bSave && !ofDirectory::doesDirectoryExist(dir)){
+        ofDirectory::createDirectory(dir, true);
+        ofLogNotice() << "Creating directory: " << dir << endl;
+    }
 }
 
 void App::update(ofEventArgs &args){
@@ -93,7 +137,7 @@ void App::update(ofEventArgs &args){
     
     
     if(ofGetFrameNum() % 15 == 0){
-        data.open("http://localhost:3000/last.json");
+        data.open("http://192.168.1.42:3000/last.json");
     }
 }
 

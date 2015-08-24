@@ -37,6 +37,12 @@ void FlowEngine::setupCamera(){
         flow_x.push_back(0);
         flow_y.push_back(0);
     }
+    delta_y = 0;
+    frames  = 0;
+}
+
+void FlowEngine::resetFlow(){
+    frames  = 0;
 }
 
 void FlowEngine::updateFlow(){
@@ -44,7 +50,7 @@ void FlowEngine::updateFlow(){
     
     if(vidGrabber.isFrameNew()){
         img.setFromPixels(vidGrabber.getPixelsRef());
-        img.crop(0, 0, camWidth , camWidth * 450 / 910.);
+        img.crop(0, delta_y, camWidth , camWidth * 450 / 910.);
         
         colorImg.setFromPixels(img.getPixelsRef());
         gray = colorImg;
@@ -58,12 +64,13 @@ void FlowEngine::updateFlow(){
         
         contourFinder.findContours(thresh);
         updateFluids();
+        frames ++;
         computeFlow();
     }
 }
 
 void FlowEngine::computeFlow(){
-    
+    if(frames < 2) return;
     ofVec2f *flowVectors = opticalFlow.getFlowVectors();
     
     float avgFlow_x = 0;
@@ -79,7 +86,7 @@ void FlowEngine::computeFlow(){
     avgFlow /= flowWidth * flowHeight;
     
     
-    avgFlow = ofClamp(avgFlow, 0, 100);
+    avgFlow = ofClamp(avgFlow, 0, 1);
     
     flow.push_back(avgFlow);
     flow_x.push_back(avgFlow_x);
@@ -91,6 +98,7 @@ void FlowEngine::computeFlow(){
         flow_x.erase(flow_x.begin()+ 0);
         flow_y.erase(flow_y.begin()+ 0);
     }
+    
     
     saveFlow(avgFlow);
     

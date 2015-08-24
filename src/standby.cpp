@@ -26,7 +26,6 @@ void Standby::draw(){
 };
 
 void Standby::update(){
-    processOsc();
 }
 
 
@@ -35,9 +34,3 @@ void Standby::next(){
     delete this;
 };
 
-void Standby::processOsc(){
-    while(app->receiver->hasWaitingMessages()){
-        ofxOscMessage m;
-        app->receiver->getNextMessage(&m);
-    }
-}

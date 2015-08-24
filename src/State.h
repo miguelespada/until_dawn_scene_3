@@ -11,7 +11,6 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-
 class App;
 
 class State
@@ -27,7 +26,9 @@ public:
     virtual void update() {};
     virtual void push() {};
     virtual void end() {};
-    virtual void init() {};
+    virtual void standby();
+    virtual void index();
+    virtual void calculandoIndex();
 };
 
 

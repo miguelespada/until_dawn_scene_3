@@ -23,6 +23,8 @@ public:
     int camWidth;
     int camHeight;
     int delta_y;
+    int delta_x;
+    
     float target_x;
     float target_y;
 

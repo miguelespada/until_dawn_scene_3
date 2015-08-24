@@ -22,6 +22,9 @@
 		4166D6A6757F613CED499577 /* ftDrawForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A092AB6F7172A3547F3C6E4 /* ftDrawForce.cpp */; };
 		45CC483A999BF1065A6B926C /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD717072C35D324E101669 /* Distance.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
+		4970F0FD1B8AF36E00AEE600 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4970F0FC1B8AF36E00AEE600 /* State.cpp */; };
+		4970F1031B8AFDBD00AEE600 /* calculandoIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4970F0FF1B8AFDBD00AEE600 /* calculandoIndex.cpp */; };
+		4970F1041B8AFDBD00AEE600 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4970F1011B8AFDBD00AEE600 /* index.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
 		54FAC54E7E1116A49955101E /* ftOpticalFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD4BAB412F2EAE29DEEF7D5E /* ftOpticalFlow.cpp */; };
@@ -188,6 +191,11 @@
 		45410DD818BB205166E67E89 /* any.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = any.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/any.h; sourceTree = SOURCE_ROOT; };
 		45F38573A0B0DEEC8BBC7A2C /* simplex_downhill.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = simplex_downhill.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/simplex_downhill.h; sourceTree = SOURCE_ROOT; };
 		48974F980F51769171D0B2F5 /* IpEndpointName.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IpEndpointName.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.h; sourceTree = SOURCE_ROOT; };
+		4970F0FC1B8AF36E00AEE600 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
+		4970F0FF1B8AFDBD00AEE600 /* calculandoIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = calculandoIndex.cpp; sourceTree = "<group>"; };
+		4970F1001B8AFDBD00AEE600 /* calculandoIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculandoIndex.h; sourceTree = "<group>"; };
+		4970F1011B8AFDBD00AEE600 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = index.cpp; sourceTree = "<group>"; };
+		4970F1021B8AFDBD00AEE600 /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
 		49EFFCF36CF194CCE0E1FAAB /* kdtree_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kdtree_index.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/kdtree_index.h; sourceTree = SOURCE_ROOT; };
 		4A9424A14E5089259F9E4E7D /* thermal.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = thermal.cpp; path = src/thermal.cpp; sourceTree = SOURCE_ROOT; };
 		4AB48205C33136836399F476 /* flowGlitch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = flowGlitch.h; path = src/flowGlitch.h; sourceTree = SOURCE_ROOT; };
@@ -725,13 +733,18 @@
 				22CE8AEE705C776D432BE4B3 /* flow.h */,
 				17EF0AB3B9952D3B0B902495 /* flowGlitch.cpp */,
 				4AB48205C33136836399F476 /* flowGlitch.h */,
-				0961B0BB8393E6FCE513BE9D /* standby.cpp */,
-				AB18B56720D8D1AEBBC282E4 /* standby.h */,
 				1760D8CD1211521ADE798382 /* State.h */,
+				4970F0FC1B8AF36E00AEE600 /* State.cpp */,
 				4A9424A14E5089259F9E4E7D /* thermal.cpp */,
 				E4CA0CE275896741F2ECC407 /* thermal.h */,
 				F8E2454B2CDBCB9BCA9821D0 /* thermalGlitch.cpp */,
 				162EB5D5DBC25573E0C9B9F3 /* thermalGlitch.h */,
+				0961B0BB8393E6FCE513BE9D /* standby.cpp */,
+				AB18B56720D8D1AEBBC282E4 /* standby.h */,
+				4970F0FF1B8AFDBD00AEE600 /* calculandoIndex.cpp */,
+				4970F1001B8AFDBD00AEE600 /* calculandoIndex.h */,
+				4970F1011B8AFDBD00AEE600 /* index.cpp */,
+				4970F1021B8AFDBD00AEE600 /* index.h */,
 			);
 			name = States;
 			sourceTree = "<group>";
@@ -1457,10 +1470,12 @@
 				5CC34D433F5806179935B89D /* Flow.cpp in Sources */,
 				2023EF517ED2D8B397511D4B /* Helpers.cpp in Sources */,
 				311DF864378748129984EA1D /* Kalman.cpp in Sources */,
+				4970F0FD1B8AF36E00AEE600 /* State.cpp in Sources */,
 				C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */,
 				7CDAD32BE4FA46701E3552C7 /* RunningBackground.cpp in Sources */,
 				10B69DE456AED1288FC9316B /* Tracker.cpp in Sources */,
 				A6668C5B1272D7FCD5B5A16F /* Utilities.cpp in Sources */,
+				4970F1031B8AFDBD00AEE600 /* calculandoIndex.cpp in Sources */,
 				DBCB84A37F9AECC254870D79 /* Wrappers.cpp in Sources */,
 				4166D6A6757F613CED499577 /* ftDrawForce.cpp in Sources */,
 				AFBC335CC80DC27DCC9E70D7 /* ftFluidSimulation.cpp in Sources */,
@@ -1482,6 +1497,7 @@
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				4970F1041B8AFDBD00AEE600 /* index.cpp in Sources */,
 				E6ADFAF5B64F107FD970E6E7 /* ColorConversion.cpp in Sources */,
 				DD6B7D26B640FE59CC56C615 /* DeckLinkController.cpp in Sources */,
 				0FC43B3D38A4D41A1AD95D39 /* ofxBlackMagic.cpp in Sources */,

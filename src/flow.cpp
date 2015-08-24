@@ -12,6 +12,7 @@
 #include "App.h"
 #include "Assets.h"
 #include "thermalGlitch.h"
+#include "flowGlitch.h"
 #include "ofxJSON.h"
 
 
@@ -23,7 +24,7 @@ Flow::Flow(App *a){
     
     
     flowEngine = app->flowEngine;
-    
+    flowEngine->resetFlow();
     
 };
 
@@ -85,9 +86,10 @@ void Flow::update(){
 
 
 void Flow::next(){
-    app->setCurrentState(new thermalGlitch(app));
+    app->setCurrentState(new flowGlitch(app));
     delete this;
 };
+
 
 void Flow::drawFluids(){
     ofPushMatrix();

@@ -13,11 +13,8 @@ void ofApp::setup(){
     bRotated = true;
     setRotation();
     
-
+    app.setCurrentState(new Flow(&app));
     
-    app.setCurrentState(new Thermal(&app));
-    
-//    setFullScreen();
 }
 
 //--------------------------------------------------------------
@@ -44,9 +41,12 @@ void ofApp::draw(){
     
     app.draw();
     ofPopMatrix();
-
-//    ofSaveScreen("image_" + ofToString(ofGetFrameNum()) + ".jpg");
     
+    if (app.bSave){
+        string filename = app.dir + "/" + ofToString(ofGetTimestampString()) + ".jpg";
+        ofSaveScreen(filename);
+        ofLogNotice() << "Saving... " << filename;
+    }
     if(ofGetFrameNum() % 30 == 0)
         ofLogNotice() << ofGetFrameRate();
 
@@ -61,7 +61,30 @@ void ofApp::keyPressed(int key){
             bRotated = !bRotated;
             setRotation();
             break;
-        
+            
+        case 'S':
+            app.bSave = !app.bSave;
+            app.save();
+            break;
+            
+        case 'i':
+            app.current_state->standby();
+            break;
+            
+        case '=':
+            app.current_state->index();
+            break;
+        case '0':
+            app.current_state->calculandoIndex();
+            break;
+            
+            
+        case 'F':
+            setFullScreen(true);
+            break;
+        case 'f':
+            setFullScreen(false);
+            break;
         default:
             break;
     }
@@ -80,10 +103,22 @@ void ofApp::setRotation(){
         ofSetWindowShape(WW, HH);
 }
 
-void ofApp::setFullScreen(){
-    ofSetWindowPosition(1921, 0);
-    ofToggleFullscreen();
-    bRotated = false;
-    setRotation();
 
+void ofApp::setFullScreen(bool bFull){
+    if(bFull){
+        ofSetFullscreen(true);
+        bRotated = false;
+        setRotation();
+        ofSetWindowShape(1920, 1080);
+        ofSetWindowPosition(1921, 0);
+        ofHideCursor();
+    }
+    else{
+        ofSetWindowPosition(100, 100);
+        ofSetFullscreen(false);
+        bRotated = true;
+        setRotation();
+        ofShowCursor();
+    }
+    
 }

@@ -31,18 +31,20 @@ void ThermalEngine::setupCamera(){
     
     target_x = 0.5;
     target_y = 0.5;
+    delta_x = 0;
+    delta_y = 0;
 }
 
 void ThermalEngine::updateThermal(ofImage blackMagicImg){
     
     if(BLACKMAGIC){
-        img.cropFrom(blackMagicImg, 0,  delta_y, camWidth , camWidth * 450 / 910.);
+        img.cropFrom(blackMagicImg, delta_x,  delta_y, camWidth , camWidth * 450 / 910.);
     }
     else{
       vidGrabber.update();
         if(vidGrabber.isFrameNew()){
             img.setFromPixels(vidGrabber.getPixelsRef());
-            img.crop( 0,  delta_y, camWidth , camWidth * 450 / 910. );
+            img.crop( delta_x,  delta_y, camWidth , camWidth * 450 / 910. );
         }
     }
 

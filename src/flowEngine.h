@@ -28,6 +28,7 @@ public:
     void updateFluids();
     void computeFlow();
     void saveFlow(float avgFlow);
+    void resetFlow();
     
     ofVideoGrabber 		vidGrabber;
     int 				camWidth;
@@ -64,6 +65,9 @@ public:
     vector<float> flow;
     vector<float> flow_x;
     vector<float> flow_y;
+    
+    int delta_y;
+    int frames;
 };
 
 #endif /* defined(__until_dawn_screen_3__flowEngine__) */

@@ -12,6 +12,7 @@
 #include "flowGlitch.h"
 #include "App.h"
 #include "Assets.h"
+#include "standby.h"
 
 
 
@@ -42,11 +43,9 @@ void Thermal::draw(){
     drawTemperature();
     drawTarget();
     
-    
     assets->wireframe_thermal.draw(0, 0);
     
 };
-
 
 
 void Thermal::update(){
@@ -59,11 +58,12 @@ void Thermal::next(){
     delete this;
 };
 
+
 void Thermal::drawElapsedTime(){
     ofPushMatrix();
     
     ofTranslate(818 , 273);
-    int elapsed_seconds = int(ofGetElapsedTimef() - initial_time /1000);
+    int elapsed_seconds = app->data["runningTime"].asInt();
     int elapsed_minutes = elapsed_seconds / 60;
     elapsed_seconds %= 60;
     string leading_minutes = "";
@@ -92,7 +92,7 @@ void Thermal::drawTexts(){
     string msg;
     ofTrueTypeFont *font = assets->getFont(11);
     
-    msg = "MIGUEL V. ESPADA";
+    msg = app->data["name"].asString();
     font->drawStringAsShapes(msg, 84, 177 + font->getLineHeight() / 1.5);
     
     msg = ofToString(ofGetFrameRate());

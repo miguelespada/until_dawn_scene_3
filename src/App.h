@@ -48,6 +48,9 @@ public:
     
     
     ofxJSONElement data;
+    bool bSave;
+    void save();
+    string dir;
 };
 
 
