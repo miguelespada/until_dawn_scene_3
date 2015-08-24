@@ -10,15 +10,31 @@
 	<string>until_dawn_screen_3</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>033119C972DFE59718092B5C52DB7E814DF74ABB</key>
+		<string>https://github.com/kylemcdonald/ofxLibdc.git</string>
 		<key>36D261D00EF6F498D865B0FA4B4C661EB689D19B</key>
 		<string>https://github.com/miguelespada/until_dawn_scene_3.git</string>
+		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
+		<string>https://github.com/kylemcdonald/ofxCv.git</string>
+		<key>5DB7C332A3A89035E93556A2A38BF414005BA671</key>
+		<string>https://github.com/jefftimesten/ofxJSON.git</string>
+		<key>BC9922FFE483A78DDBB9267B94D68853DF1435F5</key>
+		<string>https://github.com/kylemcdonald/ofxBlackmagic.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>until_dawn_screen_3.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>033119C972DFE59718092B5C52DB7E814DF74ABB</key>
+		<string>../../../addons/ofxLibdc</string>
 		<key>36D261D00EF6F498D865B0FA4B4C661EB689D19B</key>
 		<string>../..</string>
+		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
+		<string>../../../addons/ofxCv</string>
+		<key>5DB7C332A3A89035E93556A2A38BF414005BA671</key>
+		<string>../../../../../addons/ofxJSON</string>
+		<key>BC9922FFE483A78DDBB9267B94D68853DF1435F5</key>
+		<string>../../../addons/ofxBlackmagic</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/miguelespada/until_dawn_scene_3.git</string>
@@ -28,6 +44,38 @@
 	<string>36D261D00EF6F498D865B0FA4B4C661EB689D19B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC9922FFE483A78DDBB9267B94D68853DF1435F5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxBlackmagic</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>37526DA425E5430474A14FBFA1BC4525160B5FC1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxCv</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5DB7C332A3A89035E93556A2A38BF414005BA671</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxJSON</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>033119C972DFE59718092B5C52DB7E814DF74ABB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxLibdc</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

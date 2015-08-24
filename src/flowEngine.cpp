@@ -13,10 +13,10 @@
 void FlowEngine::setupCamera(){
 
     camWidth 		= 640;
-    camHeight 		= 480;
+    camHeight 		= 316;
     
     camera.setImageType(OF_IMAGE_GRAYSCALE);
-    camera.setSize(640, 316);
+    camera.setSize(camWidth, camHeight);
     camera.setFrameRate(10);
     camera.setBlocking(false);
     
@@ -42,7 +42,6 @@ void FlowEngine::resetFlow(){
 
 void FlowEngine::updateFlow(){
     if(camera.grabVideo(img)){
-//        img.crop(0, delta_y, camWidth , camWidth * 450 / 910.);
         gray.setFromPixels(img.getPixelsRef());
         
         inverted = gray;
@@ -104,7 +103,7 @@ void FlowEngine::saveFlow(float avgFlow){
 void FlowEngine::setupFluids(){
     
     flowWidth = camWidth/4;
-    flowHeight = camWidth * 450 / 910;
+    flowHeight = camHeight/4;
     
     
     // Flow & Mask

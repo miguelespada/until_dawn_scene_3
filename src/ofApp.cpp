@@ -108,7 +108,7 @@ void ofApp::setFullScreen(bool bFull){
         bRotated = false;
         setRotation();
         ofSetWindowShape(1920, 1080);
-        ofSetWindowPosition(1921, 0);
+        ofSetWindowPosition(0, 0);
         ofHideCursor();
     }
     else{
