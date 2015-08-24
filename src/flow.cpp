@@ -86,7 +86,7 @@ void Flow::update(){
 
 
 void Flow::next(){
-    app->setCurrentState(new flowGlitch(app));
+    app->setCurrentState(new thermalGlitch(app));
     delete this;
 };
 

@@ -36,6 +36,9 @@ void thermalGlitch::update(){
 }
 
 void thermalGlitch::next(){
+    
+    video.stop();
+    
     app->setCurrentState(new Thermal(app));
     delete this;
     

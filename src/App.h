@@ -14,8 +14,8 @@
 #include "ofxOsc.h"
 #include "flowEngine.h"
 #include "thermalEngine.h"
-#include "ofxBlackMagic.h"
 #include "ofxJSON.h"
+#include "pbNetwork.h"
 
 class App
 {
@@ -31,7 +31,6 @@ public:
     void keyPressed(ofKeyEventArgs& eventArgs);
     void update(ofEventArgs &args);
     
-    void updateBlackMagic();
     
     void update();
     void next();
@@ -42,15 +41,31 @@ public:
     
     FlowEngine *flowEngine;
     ThermalEngine *thermalEngine;
-    
-    ofxBlackMagic cam;
-    ofImage blackMagicImage;
-    
+
     
     ofxJSONElement data;
     bool bSave;
     void save();
     string dir;
+    
+    
+    
+    void setupNetwork();
+    void receiveHeatmap();
+    
+    pbNetworkReceiver _receiver;	//Network receiver
+    int _frameId;		//id of received frame
+    
+    int w, h;			//Width and height of image
+    int size;			//Size of image data in bytes
+    
+    ofImage heatMapImage;		//Received image
+    
+    //FPS counter
+    float _receiveLastTime;
+    int _receiveCount;
+    float _receiveFPS;
+
 };
 
 

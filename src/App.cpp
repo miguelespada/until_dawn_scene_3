@@ -21,14 +21,13 @@ App::App(){
     thermalEngine->setupCamera();
     
     
-    if(BLACKMAGIC)
-        cam.setup(1920, 1080, 30);
+    if(NETWORK)
+        setupNetwork();
     
     bSave = false;
 }
 
 App::~App(){
-    cam.close();
     delete flowEngine;
     delete thermalEngine;
 }
@@ -59,9 +58,8 @@ void App::draw(){
 }
 
 void App::update(){
-    if(BLACKMAGIC){
-        if(current_state->toString() == "Thermal")
-            updateBlackMagic();
+    if(NETWORK){
+        receiveHeatmap();
     }
     try
     {
@@ -71,7 +69,7 @@ void App::update(){
             flowEngine->updateFlow();
         
             if(current_state->toString() == "Thermal")
-                thermalEngine->updateThermal(blackMagicImage);
+                thermalEngine->updateThermal(heatMapImage);
         }
     }
     
@@ -151,9 +149,31 @@ void App::keyPressed (ofKeyEventArgs& eventArgs){
     }
 }
 
-void App::updateBlackMagic(){
-    if(cam.update()){
-        blackMagicImage.setFromPixels(cam.getColorPixels());
+
+void App::setupNetwork(){
+    
+    //Set image size
+    w = 640;
+    h = 316;
+    size = w * h * 3;
+    
+    //Starting network
+    int port = 12345;
+    int packetSize = 1024;
+    
+    _receiver.setup( port, packetSize, true );
+    _frameId = -1;
+}
+
+void App::receiveHeatmap(){
+    if ( _receiver.frame() != _frameId ) {
+        _frameId = _receiver.frame();
+        if ( _receiver.size() == size ) {
+            heatMapImage.setFromPixels(  &_receiver.data()[0], w, h, OF_IMAGE_COLOR );
+        }
+        else {
+            cout << "ERROR: Network received data with bad size, check image sizes" << endl;
+        }
     }
     
 }

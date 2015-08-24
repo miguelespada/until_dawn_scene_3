@@ -11,21 +11,16 @@
 #include "assets.h"
 
 void FlowEngine::setupCamera(){
-    vector<ofVideoDevice> devices = vidGrabber.listDevices();
-    
-    for(int i = 0; i < devices.size(); i++){
-        cout << devices[i].id << ": " << devices[i].deviceName;
-        if( devices[i].bAvailable ){
-            cout << endl;
-        }else{
-            cout << " - unavailable " << endl;
-        }
-    }
+
     camWidth 		= 640;
     camHeight 		= 480;
     
-    vidGrabber.setDeviceID(0);
-    vidGrabber.initGrabber(camWidth,camHeight);
+    camera.setImageType(OF_IMAGE_GRAYSCALE);
+    camera.setSize(640, 316);
+    camera.setFrameRate(10);
+    camera.setBlocking(false);
+    
+    camera.setup();
     
     setupFluids();
     
@@ -46,14 +41,9 @@ void FlowEngine::resetFlow(){
 }
 
 void FlowEngine::updateFlow(){
-    vidGrabber.update();
-    
-    if(vidGrabber.isFrameNew()){
-        img.setFromPixels(vidGrabber.getPixelsRef());
-        img.crop(0, delta_y, camWidth , camWidth * 450 / 910.);
-        
-        colorImg.setFromPixels(img.getPixelsRef());
-        gray = colorImg;
+    if(camera.grabVideo(img)){
+//        img.crop(0, delta_y, camWidth , camWidth * 450 / 910.);
+        gray.setFromPixels(img.getPixelsRef());
         
         inverted = gray;
         inverted.invert();

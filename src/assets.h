@@ -16,7 +16,7 @@
 #define HH 1080/SCALE
 #define FLOW_SIZE 150
 
-#define BLACKMAGIC false
+#define NETWORK true
 
 class Assets{
 public:

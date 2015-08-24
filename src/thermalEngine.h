@@ -18,7 +18,6 @@ class ThermalEngine
     
     
 public:
-    ofVideoPlayer vidGrabber;
     
     int camWidth;
     int camHeight;
@@ -43,7 +42,7 @@ public:
     void calculateAvg();
     
     void setupCamera();
-    void updateThermal(ofImage blackMagicImg);
+    void updateThermal(ofImage heatImg);
     
     void saveThermal(float absDist);
     

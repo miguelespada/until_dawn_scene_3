@@ -5,3 +5,5 @@ ofxFlowTools
 ofxOpenCv
 ofxGui
 ofxBlackmagic
+ofxNetwork
+ofxLibdc

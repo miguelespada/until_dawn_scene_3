@@ -20,12 +20,6 @@ void ThermalEngine::setupCamera(){
     
     images = vector<ofImage>();
     
-    if(!BLACKMAGIC){
-        vidGrabber.loadMovie("carlos.mov");
-        vidGrabber.play();
-    }
-    
-    
     for(int i = 0; i < 100; i ++)
         dist.push_back(0);
     
@@ -35,21 +29,9 @@ void ThermalEngine::setupCamera(){
     delta_y = 0;
 }
 
-void ThermalEngine::updateThermal(ofImage blackMagicImg){
-    
-    if(BLACKMAGIC){
-        img.cropFrom(blackMagicImg, delta_x,  delta_y, camWidth , camWidth * 450 / 910.);
-    }
-    else{
-      vidGrabber.update();
-        if(vidGrabber.isFrameNew()){
-            img.setFromPixels(vidGrabber.getPixelsRef());
-            img.crop( delta_x,  delta_y, camWidth , camWidth * 450 / 910. );
-        }
-    }
+void ThermalEngine::updateThermal(ofImage heatImg){
 
-
-    images.push_back(img);
+    images.push_back(heatImg);
     
     if(images.size() > 2)
         calculateVariation();

@@ -14,6 +14,7 @@
 #include "ofxFlowTools.h"
 #include "ofxCv.h"
 #include "ofxOpenCv.h"
+#include "ofxLibdc.h"
 using namespace flowTools;
 
 
@@ -30,7 +31,7 @@ public:
     void saveFlow(float avgFlow);
     void resetFlow();
     
-    ofVideoGrabber 		vidGrabber;
+    ofxLibdc::Camera    camera;
     int 				camWidth;
     int 				camHeight;
     

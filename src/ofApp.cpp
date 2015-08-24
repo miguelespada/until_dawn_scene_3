@@ -13,14 +13,12 @@ void ofApp::setup(){
     bRotated = true;
     setRotation();
     
-    app.setCurrentState(new Flow(&app));
-    
+    app.setCurrentState(new Thermal(&app));
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
-}
+ }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
