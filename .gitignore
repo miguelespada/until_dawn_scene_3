@@ -6,3 +6,4 @@ obj
 bin/data/*.mov
 bin/data/*.jpg
 bin/data/*.mp4
+bin/data/images/*
