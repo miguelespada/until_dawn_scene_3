@@ -13,14 +13,19 @@
 
 class Standby: public State
 {
+    ofVideoPlayer video;
     
 public:
     Standby(App *g);
-    ~Standby(){};
+    ~Standby(){
+        cout << "video stop" << endl;
+        video.stop();
+    };
     std::string toString() { return "stand by"; }
     void update();
     void draw();
     void next();
+    void clear();
 };
 
 

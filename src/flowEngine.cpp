@@ -34,6 +34,8 @@ void FlowEngine::setupCamera(){
     }
     delta_y = 0;
     frames  = 0;
+    sender.setup("192.168.1.42", 12350);
+
 }
 
 void FlowEngine::resetFlow(){
@@ -95,8 +97,12 @@ void FlowEngine::computeFlow(){
 
 void FlowEngine::saveFlow(float avgFlow){
     
-    ofxJSONElement response;
-    response.open("http://192.168.1.42:3000/flow.json?v=" + ofToString(avgFlow));
+    float t = ofGetElapsedTimeMillis();
+    
+    ofxOscMessage m;
+    m.setAddress("/flow");
+    m.addFloatArg(avgFlow);
+    sender.sendMessage(m);
     
 }
 

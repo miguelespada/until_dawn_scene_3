@@ -2,6 +2,8 @@
 #include "ofxJSON.h"
 #include "assets.h"
 #include "standby.h"
+#include "index.h"
+#include "calculandoIndex.h"
 
 
 App::App(){
@@ -80,15 +82,14 @@ void App::update(){
     
     
     while(receiver->hasWaitingMessages()){
+        
         ofxOscMessage m;
         
         receiver->getNextMessage(&m);
-        cout << m.getAddress() << endl;
         if(m.getAddress() == "/thermal"){
-            thermalEngine->delta_x = m.getArgAsInt32(0);
-            thermalEngine->delta_y = m.getArgAsInt32(1);
-            thermalEngine->target_x = m.getArgAsFloat(2);
-            thermalEngine->target_y = m.getArgAsFloat(3);
+            thermalEngine->target_x = m.getArgAsFloat(0);
+            thermalEngine->target_y = m.getArgAsFloat(1);
+            
         }
         
         if(m.getAddress() == "/flow"){
@@ -102,7 +103,6 @@ void App::update(){
         if(m.getAddress() == "/next"){
             current_state->next();
         }
-        
         
         if(m.getAddress() == "/index"){
             current_state->index();
@@ -132,9 +132,10 @@ void App::save(){
 
 void App::update(ofEventArgs &args){
     update();
-    
+
     
     if(ofGetFrameNum() % 15 == 0){
+        float t = ofGetElapsedTimeMillis();
         data.open("http://192.168.1.42:3000/last.json");
     }
 }

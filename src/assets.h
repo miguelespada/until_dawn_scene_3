@@ -31,6 +31,9 @@ public:
     ofColor yellow = ofColor(254, 223, 82);
     ofColor green = ofColor(94, 172, 77);
     ofColor orange = ofColor(243, 144, 69);
+    ofVideoPlayer indices[5];
+    ofVideoPlayer calculando;
+    ofVideoPlayer standby;
     
     
     ofImage wireframe_flow;

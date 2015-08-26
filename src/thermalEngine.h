@@ -10,6 +10,7 @@
 #define __until_dawn_screen_3__termalEngine__
 
 #include "ofMain.h"
+#include "ofxOsc.h"
 
 #define BUFFER_SIZE 20
 
@@ -50,6 +51,7 @@ public:
     ofImage lastImage();
     ofImage prev(int n);
     
+    ofxOscSender sender;
     
 };
 

@@ -18,9 +18,7 @@
 #include "ofxOpenCv.h"
 #include "assets.h"
 #include "flowEngine.h"
-
-
-
+#include "ofxOsc.h"
 
 class Flow: public State
 {

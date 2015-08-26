@@ -14,36 +14,31 @@
 calculandoIndex::calculandoIndex(App *a){
     app = a;
     ofLogNotice() << "State: " << toString();
+    video = Assets::getInstance()->calculando;
     
+    video.setLoopState(OF_LOOP_PALINDROME);
+    video.setPosition(0);
+    video.play();
     timer = ofGetElapsedTimef();
     alpha = 0;
     dots = 0;
 };
 
 void calculandoIndex::draw(){
+    if(!video.isLoaded()){
+        Assets::getInstance()->calculando.loadMovie("calculando.mov");
+        video = Assets::getInstance()->calculando;
+        video.play();
+    }
+    
+    if(video.isLoaded())
+        video.draw(0, 0);
+    
     int w = 1080;
     int h = 1920;
     
     ofPushMatrix();
-    
-    ofTranslate(w/2, h/4);
-    
-    float r = w/3;
-    ofEnableSmoothing();
-    ofSetColor(255);
-    ofPath p = ofPath();
-    p.setCircleResolution(200);
-    p.setFilled(false);
-    p.setStrokeColor(255);
-    p.moveTo(r, 0);
-    ofRotate(- ofRadToDeg(alpha), 0, 0, 1);
-    p.arc(0, 0, r, r, 0, 180 );
-    p.setStrokeWidth(1.5);
-    p.draw();
-    ofDisableSmoothing();
-    
-    
-    ofPopMatrix();
+    ofTranslate(0, 100);
     
     ofTrueTypeFont *font = Assets::getInstance()->getFont(30);
     string msg = "CALCULANDO";
@@ -57,21 +52,31 @@ void calculandoIndex::draw(){
     text_x = w / 2 - font->stringWidth(msg) / 2;
     font->drawStringAsShapes(msg, text_x, h/4 + font->stringHeight(msg) * 1.5);
     
-    string dots_msg = "";
+    string dots_msg = ".";
     for(int i = 0; i < dots; i ++)
         dots_msg += ".";
     
     font->drawStringAsShapes(dots_msg, text_x + font->stringWidth(msg) - 20 , h/4 + font->stringHeight(msg) * 1.5);
+    ofPopMatrix();
+
 };
 
 void calculandoIndex::update(){
+    
+    if(video.isLoaded())
+        video.update();
+    
     alpha += 0.2;
     if(ofGetFrameNum() % 10 == 0)
-        dots = (dots + 1) % 4;
+        dots = (dots + 1) % 3;
 }
 
 
 void calculandoIndex::next(){
     app->setCurrentState(new Index(app));
     delete this;
+};
+
+void calculandoIndex::clear(){
+    video.stop();
 };

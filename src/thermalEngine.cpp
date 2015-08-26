@@ -27,6 +27,8 @@ void ThermalEngine::setupCamera(){
     target_y = 0.5;
     delta_x = 0;
     delta_y = 0;
+    
+    sender.setup("192.168.1.42", 12350);
 }
 
 void ThermalEngine::updateThermal(ofImage heatImg){
@@ -45,18 +47,15 @@ void ThermalEngine::updateThermal(ofImage heatImg){
 void ThermalEngine::calculateVariation(){
 
     ofColor c = prev(1).getColor(target_x  * camWidth , target_y * camHeight);
-    int h = c.getHueAngle();
+    int h = c.getHue();
     
     ofColor c1 = prev(2).getColor(target_x  * camWidth , target_y * camHeight);
-    int h_1 = c1.getHueAngle();
+    int h_1 = c1.getHue();
 
     
     int absDist = abs(h_1 - h);
-    if(absDist > 300){
-        absDist = 360 - absDist;
-    }
     
-    absDist = ofClamp(absDist, 0, 40);
+    absDist = ofClamp(absDist, 0, 1);
     dist.push_back(absDist);
     
     if(dist.size() > 100){
@@ -78,8 +77,12 @@ void ThermalEngine::calculateAvg(){
 
 void ThermalEngine::saveThermal(float absDist){
     
-    ofxJSONElement response;
-    response.open("http://192.168.1.42:3000/thermal.json?v=" + ofToString(avg));
+    
+    ofxOscMessage m;
+    m.setAddress("/flow");
+    m.addFloatArg(avg);
+    sender.sendMessage(m);
+    
     
 }
 

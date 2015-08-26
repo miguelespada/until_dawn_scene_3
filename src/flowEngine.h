@@ -15,6 +15,8 @@
 #include "ofxCv.h"
 #include "ofxOpenCv.h"
 #include "ofxLibdc.h"
+#include "ofxOsc.h"
+
 using namespace flowTools;
 
 
@@ -69,6 +71,8 @@ public:
     
     int delta_y;
     int frames;
+    
+    ofxOscSender sender;
 };
 
 #endif /* defined(__until_dawn_screen_3__flowEngine__) */

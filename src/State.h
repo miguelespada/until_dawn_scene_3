@@ -29,6 +29,9 @@ public:
     virtual void standby();
     virtual void index();
     virtual void calculandoIndex();
+    virtual void clear() {
+
+    };
 };
 
 

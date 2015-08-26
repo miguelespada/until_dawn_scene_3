@@ -32,7 +32,7 @@
 		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
 		<string>../../../addons/ofxCv</string>
 		<key>5DB7C332A3A89035E93556A2A38BF414005BA671</key>
-		<string>../../../../../addons/ofxJSON</string>
+		<string>../../../addons/ofxJSON</string>
 		<key>BC9922FFE483A78DDBB9267B94D68853DF1435F5</key>
 		<string>../../../addons/ofxBlackmagic</string>
 	</dict>

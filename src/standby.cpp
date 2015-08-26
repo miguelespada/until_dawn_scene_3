@@ -14,18 +14,22 @@
 Standby::Standby(App *a){
     app = a;
     ofLogNotice() << "State: " << toString();
+    
+    video = Assets::getInstance()->standby;
+    video.play();
+    video.setLoopState(OF_LOOP_NORMAL);
 };
 
 void Standby::draw(){
-    ofTrueTypeFont *font = Assets::getInstance()->getFont(30);
-    
-    string msg = "STAND BY";
-    
-    int text_x = 1080/2 - font->stringWidth(msg) / 2;
-    font->drawString(msg, text_x, 400 + font->stringHeight(msg) * 1.5);
+    if(video.isLoaded())
+        video.draw(0, 0);
 };
 
 void Standby::update(){
+    
+    if(video.isLoaded())
+        video.update();
+
 }
 
 
@@ -34,3 +38,7 @@ void Standby::next(){
     delete this;
 };
 
+void Standby::clear(){
+    if(video.isLoaded())
+        video.stop();
+};

@@ -20,11 +20,12 @@
 		250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */; };
 		28090DEB5109115003E8F1C5 /* UdpSocketWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928AA323F5C2690B06C837D /* UdpSocketWin.cpp */; };
 		311DF864378748129984EA1D /* Kalman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77A1A692522820F935B58762 /* Kalman.cpp */; };
-		3A6D472C0CCB7870A569512A /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 067C2B86A3389F92E3595767 /* index.cpp */; };
 		3F732DA051BC8165FD791624 /* thermalGlitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E2454B2CDBCB9BCA9821D0 /* thermalGlitch.cpp */; };
 		4166D6A6757F613CED499577 /* ftDrawForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A092AB6F7172A3547F3C6E4 /* ftDrawForce.cpp */; };
 		45CC483A999BF1065A6B926C /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD717072C35D324E101669 /* Distance.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
+		49C85E5D1B8C66B000C123EF /* calculandoIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C85E591B8C66B000C123EF /* calculandoIndex.cpp */; };
+		49C85E5E1B8C66B000C123EF /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C85E5B1B8C66B000C123EF /* index.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
 		54FAC54E7E1116A49955101E /* ftOpticalFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD4BAB412F2EAE29DEEF7D5E /* ftOpticalFlow.cpp */; };
@@ -43,7 +44,6 @@
 		73C774B9B970BB527D0D7C1E /* flowEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3362466C04449708FC8E169D /* flowEngine.cpp */; };
 		77FBBEE103C3E71E8C9510E0 /* ftParticleFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC4179AA42E82A975E5EDC50 /* ftParticleFlow.cpp */; };
 		7CDAD32BE4FA46701E3552C7 /* RunningBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CBF6AED6A17AC0C17F63CC4 /* RunningBackground.cpp */; };
-		82C556A0F4491AED1F9C2058 /* calculandoIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C3E69D4A5D07C0AF06A43D /* calculandoIndex.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFBBF4CC43DEE890B3C3E /* OscTypes.cpp */; };
@@ -142,7 +142,6 @@
 		03A75A648BC4CF1D9DEDD0CE /* Flow.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Flow.cpp; path = ../../../addons/ofxCv/libs/ofxCv/src/Flow.cpp; sourceTree = SOURCE_ROOT; };
 		04CE6A84FA111F88EB08CDAA /* ftOpticalFlowShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftOpticalFlowShader.h; path = ../../../addons/ofxFlowTools/src/opticalflow/ftOpticalFlowShader.h; sourceTree = SOURCE_ROOT; };
 		057122A817D12571F8C0C7A4 /* ofxCvGrayscaleImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxCvGrayscaleImage.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvGrayscaleImage.cpp; sourceTree = SOURCE_ROOT; };
-		067C2B86A3389F92E3595767 /* index.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = index.cpp; path = src/index.cpp; sourceTree = SOURCE_ROOT; };
 		07818DEA3E42B969F242F634 /* ftTemperatureField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftTemperatureField.h; path = ../../../addons/ofxFlowTools/src/visualisation/ftTemperatureField.h; sourceTree = SOURCE_ROOT; };
 		087522EA37A32B8D902CAB64 /* core_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core_c.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/core_c.h; sourceTree = SOURCE_ROOT; };
 		0961B0BB8393E6FCE513BE9D /* standby.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = standby.cpp; path = src/standby.cpp; sourceTree = SOURCE_ROOT; };
@@ -216,6 +215,10 @@
 		47197AE3B317E2D820948520 /* dc1394_conversions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dc1394_conversions.h; path = ../../../addons/ofxLibdc/libs/osx/include/dc1394/dc1394_conversions.h; sourceTree = SOURCE_ROOT; };
 		47730EEF9165DA65BA2B4CBD /* dc1394_capture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dc1394_capture.h; path = ../../../addons/ofxLibdc/libs/osx/include/dc1394/dc1394_capture.h; sourceTree = SOURCE_ROOT; };
 		48974F980F51769171D0B2F5 /* IpEndpointName.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IpEndpointName.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.h; sourceTree = SOURCE_ROOT; };
+		49C85E591B8C66B000C123EF /* calculandoIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = calculandoIndex.cpp; sourceTree = "<group>"; };
+		49C85E5A1B8C66B000C123EF /* calculandoIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculandoIndex.h; sourceTree = "<group>"; };
+		49C85E5B1B8C66B000C123EF /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = index.cpp; sourceTree = "<group>"; };
+		49C85E5C1B8C66B000C123EF /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
 		49EFFCF36CF194CCE0E1FAAB /* kdtree_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kdtree_index.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/kdtree_index.h; sourceTree = SOURCE_ROOT; };
 		4A9424A14E5089259F9E4E7D /* thermal.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = thermal.cpp; path = src/thermal.cpp; sourceTree = SOURCE_ROOT; };
 		4AB48205C33136836399F476 /* flowGlitch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = flowGlitch.h; path = src/flowGlitch.h; sourceTree = SOURCE_ROOT; };
@@ -233,7 +236,6 @@
 		586A8EC141BDFA82B3B0518C /* config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = config.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/config.h; sourceTree = SOURCE_ROOT; };
 		5928AA323F5C2690B06C837D /* UdpSocketWin.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = UdpSocketWin.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/win32/UdpSocketWin.cpp; sourceTree = SOURCE_ROOT; };
 		59626D03C690200AD4E8B3A6 /* ml.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ml.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ml/ml.hpp; sourceTree = SOURCE_ROOT; };
-		59C3E69D4A5D07C0AF06A43D /* calculandoIndex.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = calculandoIndex.cpp; path = src/calculandoIndex.cpp; sourceTree = SOURCE_ROOT; };
 		5A59183C98FC5E69FC90F138 /* contrib.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = contrib.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib/contrib.hpp; sourceTree = SOURCE_ROOT; };
 		5BAA25ECC443288AC1701455 /* ftMoveParticleShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftMoveParticleShader.h; path = ../../../addons/ofxFlowTools/src/particles/ftMoveParticleShader.h; sourceTree = SOURCE_ROOT; };
 		5CBF6AED6A17AC0C17F63CC4 /* RunningBackground.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RunningBackground.cpp; path = ../../../addons/ofxCv/libs/ofxCv/src/RunningBackground.cpp; sourceTree = SOURCE_ROOT; };
@@ -378,7 +380,6 @@
 		C88333E71C9457E441C33474 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../../addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
 		C8C9B823D7872F9CBF03A813 /* ofxTCPClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTCPClient.h; path = ../../../addons/ofxNetwork/src/ofxTCPClient.h; sourceTree = SOURCE_ROOT; };
 		C8D3643CA17BDD17F0696016 /* VideoFrame.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = VideoFrame.cpp; path = ../../../addons/ofxBlackmagic/src/VideoFrame.cpp; sourceTree = SOURCE_ROOT; };
-		CB2E0AB2948FAD39906B7D0C /* index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = index.h; path = src/index.h; sourceTree = SOURCE_ROOT; };
 		CBDE84185E2969BA4AB209FC /* general.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = general.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/general.h; sourceTree = SOURCE_ROOT; };
 		CC455256CE0ECFE328853737 /* fdog.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = fdog.h; path = ../../../addons/ofxCv/libs/CLD/include/CLD/fdog.h; sourceTree = SOURCE_ROOT; };
 		CD8565F2F122EECA0C095526 /* types_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types_c.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/types_c.h; sourceTree = SOURCE_ROOT; };
@@ -404,7 +405,6 @@
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E14D3EF03E140F5604900412 /* tracking.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tracking.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video/tracking.hpp; sourceTree = SOURCE_ROOT; };
 		E354468911BA093791076DD7 /* gpumat.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = gpumat.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu/gpumat.hpp; sourceTree = SOURCE_ROOT; };
-		E395183A207B29AD6C853EF5 /* calculandoIndex.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = calculandoIndex.h; path = src/calculandoIndex.h; sourceTree = SOURCE_ROOT; };
 		E3D43EDDBF7078A5B1BB987A /* ftDrawForce.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftDrawForce.h; path = ../../../addons/ofxFlowTools/src/drawforces/ftDrawForce.h; sourceTree = SOURCE_ROOT; };
 		E3D886AF0718D649FD059D29 /* ftTimeBlurShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftTimeBlurShader.h; path = ../../../addons/ofxFlowTools/src/filters/ftTimeBlurShader.h; sourceTree = SOURCE_ROOT; };
 		E4003E8955C522F15578FF24 /* basler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = basler.h; path = ../../../addons/ofxLibdc/libs/osx/include/dc1394/vendor/basler.h; sourceTree = SOURCE_ROOT; };
@@ -817,14 +817,14 @@
 		49B9C7281B8B5C39000336B3 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				59C3E69D4A5D07C0AF06A43D /* calculandoIndex.cpp */,
-				E395183A207B29AD6C853EF5 /* calculandoIndex.h */,
+				49C85E591B8C66B000C123EF /* calculandoIndex.cpp */,
+				49C85E5A1B8C66B000C123EF /* calculandoIndex.h */,
+				49C85E5B1B8C66B000C123EF /* index.cpp */,
+				49C85E5C1B8C66B000C123EF /* index.h */,
 				FEAA6DB0C128AA2D339939ED /* flow.cpp */,
 				22CE8AEE705C776D432BE4B3 /* flow.h */,
 				17EF0AB3B9952D3B0B902495 /* flowGlitch.cpp */,
 				4AB48205C33136836399F476 /* flowGlitch.h */,
-				067C2B86A3389F92E3595767 /* index.cpp */,
-				CB2E0AB2948FAD39906B7D0C /* index.h */,
 				0961B0BB8393E6FCE513BE9D /* standby.cpp */,
 				AB18B56720D8D1AEBBC282E4 /* standby.h */,
 				C1839E654DFCF1E5B0A4029F /* State.cpp */,
@@ -1599,13 +1599,12 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				5F3744A26D0041D0C0FC246A /* App.cpp in Sources */,
 				0ECECEAA015468B5A8B3B9F1 /* assets.cpp in Sources */,
-				82C556A0F4491AED1F9C2058 /* calculandoIndex.cpp in Sources */,
 				FC9EFE5B651C8C36F25E5E77 /* flow.cpp in Sources */,
 				73C774B9B970BB527D0D7C1E /* flowEngine.cpp in Sources */,
 				8A348D975CE93FC9313C1280 /* flowGlitch.cpp in Sources */,
-				3A6D472C0CCB7870A569512A /* index.cpp in Sources */,
 				8F5D7886C62379A27A8B6B67 /* pbNetwork.cpp in Sources */,
 				97D859CAA225216F560D2FEE /* standby.cpp in Sources */,
+				49C85E5D1B8C66B000C123EF /* calculandoIndex.cpp in Sources */,
 				0C7F8EB1BFB33424DABC5F60 /* State.cpp in Sources */,
 				D9AD30C31F44118EA0B51486 /* thermal.cpp in Sources */,
 				E9D0918C42308332A986B20D /* thermalEngine.cpp in Sources */,
@@ -1666,6 +1665,7 @@
 				C3E6B03047001AECDDBFE6D3 /* DeckLinkAPIDispatch.cpp in Sources */,
 				960D20B191346612D5C05A6A /* ofxTCPClient.cpp in Sources */,
 				125506CD3E5F428AAFE5CC65 /* ofxTCPManager.cpp in Sources */,
+				49C85E5E1B8C66B000C123EF /* index.cpp in Sources */,
 				66CA411C5A9664E27326BF36 /* ofxTCPServer.cpp in Sources */,
 				E2564CF7DDB3713772BB682E /* ofxUDPManager.cpp in Sources */,
 				FB82943EE8E497BB94F66016 /* Camera.cpp in Sources */,

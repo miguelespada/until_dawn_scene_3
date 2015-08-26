@@ -13,10 +13,13 @@
 
 class calculandoIndex: public State
 {
+    ofVideoPlayer video;
     
 public:
     calculandoIndex(App *g);
-    ~calculandoIndex(){};
+    ~calculandoIndex(){
+        video.close();
+    };
     std::string toString() { return "calculandoIndex"; }
     void update();
     void draw();
@@ -24,6 +27,7 @@ public:
     
     float alpha;
     int dots;
+    void clear();
 };
 
 #endif /* defined(__until_dawn_screen_1__calculandoIndex__) */

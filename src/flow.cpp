@@ -26,6 +26,8 @@ Flow::Flow(App *a){
     flowEngine = app->flowEngine;
     flowEngine->resetFlow();
     
+    timer = ofGetElapsedTimef();
+    
 };
 
 void Flow::draw(){
@@ -79,9 +81,9 @@ void Flow::draw(){
     drawOpticalValue();
 };
 
-void Flow::update(){
-
-    
+void Flow::update(){    
+    if( ofGetElapsedTimef() > timer + 16)
+        next();
 }
 
 

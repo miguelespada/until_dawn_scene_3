@@ -26,6 +26,7 @@ public:
     void next();
     
     
+    
 };
 
 #endif /* defined(__until_dawn_screen_3__thermalGlitch__) */

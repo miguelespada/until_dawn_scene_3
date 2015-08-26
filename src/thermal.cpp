@@ -26,6 +26,8 @@ Thermal::Thermal(App *a){
     
     
     thermalEngine = app->thermalEngine;
+    
+    timer = ofGetElapsedTimef();
 
 };
 
@@ -50,6 +52,8 @@ void Thermal::draw(){
 
 void Thermal::update(){
     
+    if( ofGetElapsedTimef() > timer + 12)
+        next();
 }
 
 
@@ -129,7 +133,7 @@ void Thermal::drawThermalVariation(){
     ofPushMatrix();
     ofTranslate(800, 900);
     
-    ofScale(1.5, 2);
+    ofScale(1.5, 10);
     
     float var = 0;
     
@@ -177,7 +181,10 @@ void Thermal::drawTemperature(){
     for(int i = 0; i < temps.size() / 5; i += 1){
         float t =  temps[i].asFloat() / 100;
         
+        if(t < 30) t = 36.5;
+        
         float y = ofMap(t, 30., 40., 0, 90);
+        
         ofLine(i*5, 0, i*5, - y);
     }
     ofPopMatrix();

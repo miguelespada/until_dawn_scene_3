@@ -3,6 +3,11 @@
 #include "thermal.h"
 #include "flow.h"
 
+#include "standby.h"
+#include "index.h"
+#include "calculandoIndex.h"
+
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     
@@ -13,7 +18,7 @@ void ofApp::setup(){
     bRotated = true;
     setRotation();
     
-    app.setCurrentState(new Thermal(&app));
+    app.setCurrentState(new Flow(&app));
 }
 
 //--------------------------------------------------------------
@@ -68,14 +73,13 @@ void ofApp::keyPressed(int key){
         case 'i':
             app.current_state->standby();
             break;
-            
         case '=':
             app.current_state->index();
             break;
         case '0':
+            
             app.current_state->calculandoIndex();
             break;
-            
             
         case 'F':
             setFullScreen(true);
