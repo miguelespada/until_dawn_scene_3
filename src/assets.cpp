@@ -90,3 +90,14 @@ ofTrueTypeFont *Assets::getFont(int size){
     }
     return fonts[size];
 }
+
+void Assets::stopVideos(){
+    for(int i = 0; i < 5; i++){
+        indices[i].stop();
+        glitches[i].stop();
+    }
+    
+    calculando.stop();
+    standby.stop();
+    
+}

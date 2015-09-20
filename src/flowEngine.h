@@ -73,6 +73,7 @@ public:
     int frames;
     
     ofxOscSender sender;
+    int threshold;
 };
 
 #endif /* defined(__until_dawn_screen_3__flowEngine__) */

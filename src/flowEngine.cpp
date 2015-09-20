@@ -35,7 +35,11 @@ void FlowEngine::setupCamera(){
     delta_y = 0;
     frames  = 0;
     sender.setup("192.168.1.42", 12350);
-
+    threshold = 50;
+    contourFinder.setAutoThreshold(true);
+    contourFinder.setMinArea(100);
+    contourFinder.setMaxArea(10000);
+    
 }
 
 void FlowEngine::resetFlow(){
@@ -49,11 +53,11 @@ void FlowEngine::updateFlow(){
         inverted = gray;
         inverted.invert();
         thresh.setFromPixels(inverted.getPixelsRef());
-        ofxCv::threshold(thresh, 150);
+        ofxCv::threshold(thresh, threshold);
         
         thresh.update();
         
-        contourFinder.findContours(thresh);
+        contourFinder.findContours(gray);
         updateFluids();
         frames ++;
         computeFlow();
@@ -98,7 +102,7 @@ void FlowEngine::computeFlow(){
 void FlowEngine::saveFlow(float avgFlow){
     
     float t = ofGetElapsedTimeMillis();
-    
+    cout << avgFlow << endl;
     ofxOscMessage m;
     m.setAddress("/flow");
     m.addFloatArg(avgFlow);

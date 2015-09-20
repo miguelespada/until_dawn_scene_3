@@ -16,7 +16,7 @@
 #define HH 1080/SCALE
 #define FLOW_SIZE 150
 
-#define NETWORK true
+#define NETWORK false
 
 class Assets{
 public:
@@ -44,6 +44,7 @@ public:
     ofTrueTypeFont		*fonts[64];
     ofTrueTypeFont *getFont(int size);
     
+    void stopVideos();
     
 private:
     static Assets* instance;

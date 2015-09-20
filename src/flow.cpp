@@ -24,7 +24,7 @@ Flow::Flow(App *a){
     
     
     flowEngine = app->flowEngine;
-    flowEngine->resetFlow();
+//    flowEngine->resetFlow();
     
     timer = ofGetElapsedTimef();
     
@@ -35,7 +35,8 @@ void Flow::draw(){
     flowEngine = app->flowEngine;
     try
     {
-        flowEngine->inverted.draw(84, 200, 910,  450);
+         flowEngine->gray.draw(84, 200, 910,  450);
+        flowEngine->inverted.draw(84, 784, 910,  450);
         
             
         //        inverted.draw(84, 784, 910,  450);
@@ -82,7 +83,7 @@ void Flow::draw(){
 };
 
 void Flow::update(){    
-    if( ofGetElapsedTimef() > timer + 16)
+    if(ofGetElapsedTimef() - timer  > 16)
         next();
 }
 
@@ -166,7 +167,7 @@ void Flow::drawOpticalValue(){
     
     ofPushMatrix();
     ofTranslate(120, 550 + s / 2) ;
-    ofSetColor(255);
+    ofSetColor(assets->blue);
     ofSetLineWidth(1);
     
     
@@ -174,6 +175,8 @@ void Flow::drawOpticalValue(){
     for(int i = 1; i < FLOW_SIZE; i ++)
         ofLine(i - 1, - flowEngine->flow[i - 1] * s, i, -flowEngine->flow[i] * s);
     
+    
+    ofSetColor(255);
     ofPopStyle();
     ofPopMatrix();
 

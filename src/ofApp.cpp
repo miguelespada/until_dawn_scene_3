@@ -18,7 +18,7 @@ void ofApp::setup(){
     bRotated = true;
     setRotation();
     
-    app.setCurrentState(new Flow(&app));
+    app.setCurrentState(new Thermal(&app));
 }
 
 //--------------------------------------------------------------
@@ -46,7 +46,22 @@ void ofApp::draw(){
     ofPopMatrix();
     
     if (app.bSave){
-        string filename = app.dir + "/" + ofToString(ofGetTimestampString()) + ".jpg";
+//        string filename = app.dir + "/" + ofToString(ofGetTimestampString()) + ".jpg";
+        string f = "";
+        if(frame < 100000)
+            f += "0";
+        if(frame < 10000)
+            f += "0";
+        if(frame < 1000)
+            f += "0";
+        if(frame < 100)
+            f += "0";
+        if(frame < 10)
+            f += "0";
+        f += ofToString(frame);
+        
+        string filename = app.dir + "/" + f + ".jpg";
+        frame++;
         ofSaveScreen(filename);
         ofLogNotice() << "Saving... " << filename;
     }

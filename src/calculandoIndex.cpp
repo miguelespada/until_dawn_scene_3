@@ -25,12 +25,7 @@ calculandoIndex::calculandoIndex(App *a){
 };
 
 void calculandoIndex::draw(){
-    if(!video.isLoaded()){
-        Assets::getInstance()->calculando.loadMovie("calculando.mov");
-        video = Assets::getInstance()->calculando;
-        video.play();
-    }
-    
+
     if(video.isLoaded())
         video.draw(0, 0);
     

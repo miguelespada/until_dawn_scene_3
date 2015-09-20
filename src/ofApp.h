@@ -22,4 +22,6 @@ class ofApp : public ofBaseApp{
     
         void setFullScreen(bool bFull);
     
+    int frame = 0;
+    
 };

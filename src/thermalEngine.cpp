@@ -17,7 +17,6 @@ void ThermalEngine::setupCamera(){
     camHeight 		= 316;
     
     
-    
     images = vector<ofImage>();
     
     for(int i = 0; i < 100; i ++)
@@ -47,13 +46,14 @@ void ThermalEngine::updateThermal(ofImage heatImg){
 void ThermalEngine::calculateVariation(){
 
     ofColor c = prev(1).getColor(target_x  * camWidth , target_y * camHeight);
-    int h = c.getHue();
+    float h = c.getHue();
     
     ofColor c1 = prev(2).getColor(target_x  * camWidth , target_y * camHeight);
-    int h_1 = c1.getHue();
+    float h_1 = c1.getHue();
 
     
-    int absDist = abs(h_1 - h);
+    float absDist = abs(h_1 - h);
+    
     
     absDist = ofClamp(absDist, 0, 1);
     dist.push_back(absDist);
@@ -76,14 +76,6 @@ void ThermalEngine::calculateAvg(){
 }
 
 void ThermalEngine::saveThermal(float absDist){
-    
-    
-    ofxOscMessage m;
-    m.setAddress("/flow");
-    m.addFloatArg(avg);
-    sender.sendMessage(m);
-    
-    
 }
 
 bool ThermalEngine::hasImages(){

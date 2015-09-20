@@ -52,7 +52,7 @@ void Thermal::draw(){
 
 void Thermal::update(){
     
-    if( ofGetElapsedTimef() > timer + 12)
+    if( ofGetElapsedTimef() > timer + 16)
         next();
 }
 
@@ -133,7 +133,7 @@ void Thermal::drawThermalVariation(){
     ofPushMatrix();
     ofTranslate(800, 900);
     
-    ofScale(1.5, 10);
+    ofScale(1.5, 30);
     
     float var = 0;
     
@@ -152,7 +152,7 @@ void Thermal::drawThermalVariation(){
     
     font = assets->getFont(24);
     
-    msg = ofToString(int(thermalEngine->avg));
+    msg = ofToString(int(thermalEngine->avg * 10));
     
     font->drawStringAsShapes(msg, 964 - font->stringWidth(msg),  804 + font->getLineHeight() / 1.5);
 

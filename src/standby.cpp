@@ -15,9 +15,12 @@ Standby::Standby(App *a){
     app = a;
     ofLogNotice() << "State: " << toString();
     
+    Assets::getInstance()->stopVideos();
+    
     video = Assets::getInstance()->standby;
     video.play();
     video.setLoopState(OF_LOOP_NORMAL);
+    
 };
 
 void Standby::draw(){

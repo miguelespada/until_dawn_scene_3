@@ -18,7 +18,7 @@ class calculandoIndex: public State
 public:
     calculandoIndex(App *g);
     ~calculandoIndex(){
-        video.close();
+        video.stop();
     };
     std::string toString() { return "calculandoIndex"; }
     void update();

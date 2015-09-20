@@ -37,6 +37,12 @@ void Index::draw(){
     int text_x = w / 2 - font->stringWidth(msg) / 2;
     font->drawStringAsShapes(msg, text_x, h/4 + font->stringHeight(msg) * 1.5);
     
+    
+    msg = user["indice"].asString() + " %";
+    
+    text_x = w / 2 - font->stringWidth(msg) / 2;
+    font->drawStringAsShapes(msg, text_x, h/4 + 40 + font->stringHeight(msg) * 1.5);
+    
 };
 
 void Index::update(){
@@ -62,5 +68,6 @@ ofVideoPlayer Index::computeIndiceVideo(ofxJSONElement top){
 }
 
 void Index::clear(){
+    cout << " CLEAR"  << endl;
     video.stop();
 };

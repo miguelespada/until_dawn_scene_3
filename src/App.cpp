@@ -5,6 +5,7 @@
 #include "index.h"
 #include "calculandoIndex.h"
 
+#define SIMULATE true
 
 App::App(){
     ofAddListener(ofEvents().keyPressed, this, &App::keyPressed);
@@ -25,6 +26,19 @@ App::App(){
     
     if(NETWORK)
         setupNetwork();
+    else{
+        if(SIMULATE){
+            heatVideo.loadMovie("carlos.mov");
+            heatVideo.play();
+            heatVideo.setLoopState(OF_LOOP_NORMAL);
+        }
+        else{
+            webCam.listDevices();
+            webCam.setDeviceID(0);
+            webCam.initGrabber(640, 316);
+        }
+    }
+        
     
     bSave = false;
 }
@@ -63,6 +77,23 @@ void App::update(){
     if(NETWORK){
         receiveHeatmap();
     }
+    else{
+        
+        if(SIMULATE){
+            heatVideo.update();
+            if (heatVideo.isFrameNew()) {
+                heatMapImage.setFromPixels(heatVideo.getPixelsRef());
+            }
+        }
+        else{
+            webCam.update();
+            if (webCam.isFrameNew())
+                heatMapImage.setFromPixels(webCam.getPixelsRef());
+            
+        }
+
+    }
+    
     try
     {
         current_state->update();
@@ -89,11 +120,11 @@ void App::update(){
         if(m.getAddress() == "/thermal"){
             thermalEngine->target_x = m.getArgAsFloat(0);
             thermalEngine->target_y = m.getArgAsFloat(1);
-            
         }
         
+        
         if(m.getAddress() == "/flow"){
-            flowEngine->delta_y = m.getArgAsInt32(0);
+            flowEngine->threshold = int(m.getArgAsFloat(0));
         }
         
         if(m.getAddress() == "/standby"){
@@ -162,7 +193,7 @@ void App::setupNetwork(){
     int port = 12345;
     int packetSize = 1024;
     
-    _receiver.setup( port, packetSize, true );
+    _receiver.setup( port, packetSize, true);
     _frameId = -1;
 }
 

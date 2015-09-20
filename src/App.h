@@ -41,14 +41,13 @@ public:
     
     FlowEngine *flowEngine;
     ThermalEngine *thermalEngine;
-
+    ofVideoGrabber webCam;
+    ofVideoPlayer heatVideo;
     
     ofxJSONElement data;
     bool bSave;
     void save();
     string dir;
-    
-    
     
     void setupNetwork();
     void receiveHeatmap();
