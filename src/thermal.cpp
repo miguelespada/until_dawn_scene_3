@@ -52,8 +52,8 @@ void Thermal::draw(){
 
 void Thermal::update(){
     
-    if( ofGetElapsedTimef() > timer + 16)
-        next();
+//    if( ofGetElapsedTimef() > timer + 16)
+//        next();
 }
 
 
@@ -131,9 +131,9 @@ void Thermal::drawTarget(){
 void Thermal::drawThermalVariation(){
     
     ofPushMatrix();
-    ofTranslate(800, 900);
+    ofTranslate(750, 900);
     
-    ofScale(1.5, 30);
+    ofScale(2, 300);
     
     float var = 0;
     
@@ -146,13 +146,13 @@ void Thermal::drawThermalVariation(){
     ofPopMatrix();
     
     ofTrueTypeFont *font  = assets->getFont(16);
-    string msg = "HUE VARIANCE";
+    string msg = "THERMAL VARIANCE";
     font->drawStringAsShapes(msg, 964 - font->stringWidth(msg), 843 + font->getLineHeight() / 1.5);
    
     
     font = assets->getFont(24);
     
-    msg = ofToString(int(thermalEngine->avg * 10));
+    msg = ofToString(int(thermalEngine->avg)) + " %";
     
     font->drawStringAsShapes(msg, 964 - font->stringWidth(msg),  804 + font->getLineHeight() / 1.5);
 

@@ -81,7 +81,7 @@ void App::update(){
         
         if(SIMULATE){
             heatVideo.update();
-            if (heatVideo.isFrameNew()) {
+            if (heatVideo.isFrameNew() && heatVideo.isLoaded()) {
                 heatMapImage.setFromPixels(heatVideo.getPixelsRef());
             }
         }
@@ -101,11 +101,11 @@ void App::update(){
         if(current_state->toString() == "Thermal" || current_state->toString() == "Flow"){
             flowEngine->updateFlow();
         
-            if(current_state->toString() == "Thermal")
+            if(current_state->toString() == "Thermal"){
                 thermalEngine->updateThermal(heatMapImage);
+            }
         }
     }
-    
     catch (int e)
     {
         ofLogError() << "An exception occurred. Exception Nr. " << e;
