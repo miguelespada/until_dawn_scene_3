@@ -50,10 +50,9 @@ void Thermal::draw(){
 };
 
 
-void Thermal::update(){
-    
-//    if( ofGetElapsedTimef() > timer + 16)
-//        next();
+void Thermal::update(){    
+    if( ofGetElapsedTimef() > timer + 16)
+        next();
 }
 
 
@@ -178,8 +177,13 @@ void Thermal::drawTemperature(){
     ofPushMatrix();
     ofTranslate(786, 1197);
     ofScale(0.9, 1);
-    for(int i = 0; i < temps.size() / 5; i += 1){
-        float t =  temps[i].asFloat() / 100;
+    int N = temps.size();
+    
+    for(int i = 0; i < 40; i += 1){
+        int idx = i * 5;
+        if(idx > temps.size()) break;
+        
+        float t =  temps[N - i - 1].asFloat() / 100;
         
         if(t < 30) t = 36.5;
         

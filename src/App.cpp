@@ -34,7 +34,7 @@ App::App(){
         }
         else{
             webCam.listDevices();
-            webCam.setDeviceID(0);
+            webCam.setDeviceID(1);
             webCam.initGrabber(640, 316);
         }
     }

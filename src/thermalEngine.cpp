@@ -76,6 +76,11 @@ void ThermalEngine::calculateAvg(){
 }
 
 void ThermalEngine::saveThermal(float absDist){
+    
+    ofxOscMessage m;
+    m.setAddress("/thermal");
+    m.addFloatArg(absDist);
+    sender.sendMessage(m);
 }
 
 bool ThermalEngine::hasImages(){

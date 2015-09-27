@@ -102,7 +102,6 @@ void FlowEngine::computeFlow(){
 void FlowEngine::saveFlow(float avgFlow){
     
     float t = ofGetElapsedTimeMillis();
-    cout << avgFlow << endl;
     ofxOscMessage m;
     m.setAddress("/flow");
     m.addFloatArg(avgFlow);
