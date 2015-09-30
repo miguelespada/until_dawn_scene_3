@@ -5,7 +5,7 @@
 #include "index.h"
 #include "calculandoIndex.h"
 
-#define SIMULATE true
+#define SIMULATE false
 
 App::App(){
     ofAddListener(ofEvents().keyPressed, this, &App::keyPressed);
@@ -34,7 +34,7 @@ App::App(){
         }
         else{
             webCam.listDevices();
-            webCam.setDeviceID(1);
+            webCam.setDeviceID(2);
             webCam.initGrabber(640, 316);
         }
     }
